@@ -34,6 +34,10 @@ spec:
       # Application naming pattern: <app-name>-<environment>
       # e.g., jupyterhub-prod
       name:  '{{index .path.segments 1}}-{{index .path.segments 3}}' 
+      annotations:
+        # ArgoCD application name
+        argocd.argoproj.io/instance: '{{index .path.segments 1}}-{{index .path.segments 3}}'
+        argocd.argoproj.io/sync-wave: '10'
     spec:
       # Assign to the default project
       project: default
