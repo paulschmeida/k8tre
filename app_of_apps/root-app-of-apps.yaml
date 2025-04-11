@@ -22,6 +22,8 @@ spec:
     targetRevision: main
     # The directory within the repository containing ApplicationSet definitions
     path: appsets
+    directory:
+      recurse: true  # Recursively search for ApplicationSet definitions
   
   # Destination defines where to deploy the manifests
   destination:
