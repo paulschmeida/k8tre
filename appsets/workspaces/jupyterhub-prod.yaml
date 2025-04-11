@@ -1,0 +1,65 @@
+# This ApplicationSet dynamically generates Argo CD Applications for JupyterHub
+# production environments. It scans a Git repository for matching directory patterns
+# and creates applications for each match.
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  # Name of the ApplicationSet resource
+  name: jupyterhub-prod-appset
+  # The ApplicationSet is created in the ArgoCD namespace
+  namespace: argocd
+spec:
+  # Enable Go templating for dynamic field generation
+  goTemplate: true
+  # Configure template behavior - fail if a key is missing
+  goTemplateOptions: ["missingkey=error"]
+  
+  # Define how applications are discovered and generated
+  generators:
+  - git:
+      # Repository containing the application definitions
+      repoURL: https://github.com/k8tre/k8tre.git
+      # Use HEAD to always track the latest commit on the default branch
+      revision: main
+      # Pattern to match directories for app discovery
+      directories:
+        # Matches all apps with production environments
+        # Format: apps/<app-name>/envs/prod
+        - path: apps/*/envs/prod
+  
+  # Template for generating Application resources
+  template:
+    metadata:
+      # Application naming pattern: <app-name>-<environment>
+      # e.g., jupyterhub-prod
+      name:  '{{index .path.segments 1}}-{{index .path.segments 3}}' 
+    spec:
+      # Assign to the default project
+      project: default
+      # Source configuration for the application
+      source:
+        # Git repository containing the application manifests
+        repoURL: https://github.com/k8tre/k8tre.git
+        # Use the latest commit on the default branch
+        targetRevision: main
+        # Path to the application manifests within the repository
+        path: '{{.path.path}}'
+      # Destination cluster and namespace to deploy the application
+      destination:
+        # Deploy to the same cluster where ArgoCD is running
+        server: https://kubernetes.default.svc
+        # Use namespace with pattern: <app-name>-<environment>
+        # e.g., jupyterhub-prod
+        namespace: '{{index .path.segments 1}}-{{index .path.segments 3}}'
+      # Sync policy for the application
+      syncPolicy:
+        automated:
+          # Automatically delete resources that are no longer in Git
+          prune: true
+          # Automatically sync if out of sync with Git
+          selfHeal: true
+        syncOptions:
+          # Create namespace if it doesn't exist
+          - CreateNamespace=true
+
