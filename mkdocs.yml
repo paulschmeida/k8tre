@@ -1,8 +1,8 @@
-site_name: K8tre MVP
-site_description: Documentation for K8tre MVP
-site_author: K8tre Team
-repo_url: https://github.com/yourusername/k8tre-mvp
-repo_name: yourusername/k8tre-mvp
+site_name: K8TRE
+site_description: SATRE-Compliant TRE implementation on Kubernetes
+site_author: K8TRE Team
+repo_url: https://github.com/k8tre/k8tre
+repo_name: k8tre/k8tre
 
 theme:
   name: material
