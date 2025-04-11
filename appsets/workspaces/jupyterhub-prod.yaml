@@ -31,9 +31,9 @@ spec:
   # Template for generating Application resources
   template:
     metadata:
-      # Application naming pattern: <app-name>-<environment>
-      # e.g., jupyterhub-prod
-      name:  '{{index .path.segments 1}}-{{index .path.segments 3}}' 
+      # Application naming pattern: <app-name>
+      # e.g., jupyterhub
+      name:  '{{index .path.segments 1}}'
       annotations:
         # ArgoCD application name
         argocd.argoproj.io/instance: '{{index .path.segments 1}}-{{index .path.segments 3}}'
@@ -54,7 +54,7 @@ spec:
         # Deploy to the same cluster where ArgoCD is running
         server: https://kubernetes.default.svc
         # Use namespace with pattern: <app-name>-<environment>
-        # e.g., jupyterhub-prod
+        # e.g., jupyterhub
         namespace: '{{index .path.segments 1}}'
       # Sync policy for the application
       syncPolicy:
