@@ -1,12 +1,12 @@
-# K8tre MVP Documentation
+# K8TRE Documentation
 
 **AI Generated placeholder text - Not sanity checked!**
 
-Welcome to the K8tre MVP documentation.
+Welcome to the K8TRE documentation.
 
 ## Overview
 
-K8tre MVP is a project aimed at [provide brief description of your project here].
+K8TRE is a project aimed at [provide brief description of your project here].
 
 ## Features
 
@@ -16,7 +16,7 @@ K8tre MVP is a project aimed at [provide brief description of your project here]
 
 ## Getting Started
 
-Check out the [Getting Started](getting-started.md) guide to begin working with K8tre MVP.
+Check out the [Getting Started](getting-started.md) guide to begin working with K8TRE.
 
 ## Architecture
 

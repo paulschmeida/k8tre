@@ -1,8 +1,8 @@
-# Getting Started with K8tre MVP
+# Getting Started with K8TRE
 
 **AI Generated placeholder text - Not sanity checked!**
 
-This guide will help you get up and running with K8tre MVP.
+This guide will help you get up and running with K8TRE.
 
 ## Prerequisites
 
