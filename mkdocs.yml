@@ -40,5 +40,8 @@ nav:
   - Guides:
     - Installation: guides/installation.md
     - Configuration: guides/configuration.md
+  - Development:
+    - Introduction: development/introduction.md
+    - MicroK8S: development/microk8s.md
   - Reference: reference.md
   - Contributing: contributing.md
