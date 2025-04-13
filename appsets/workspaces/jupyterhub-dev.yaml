@@ -60,7 +60,7 @@ spec:
       syncPolicy:
         automated:
           # Automatically delete resources that are no longer in Git
-          prune: true
+          prune: false
           # Automatically sync if out of sync with Git
           selfHeal: true
         syncOptions:
