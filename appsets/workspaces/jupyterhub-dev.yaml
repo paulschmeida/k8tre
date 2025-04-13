@@ -59,7 +59,9 @@ spec:
       # Sync policy for the application
       syncPolicy:
         automated:
-          # Automatically delete resources that are no longer in Git
+          # Setting this to true will automatically delete resources that are no longer in Git
+          # However, this breaks JupyterHub deployments as many resources are created by the application
+          # and not managed by ArgoCD. So we set this to false. e.g., PVCs, singleuser server pods, etc.
           prune: false
           # Automatically sync if out of sync with Git
           selfHeal: true
