@@ -1,0 +1,21 @@
+# Dev-specific configurations
+debug:
+  enabled: true
+# Lower resource limits for dev environment
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+operator:
+  replicas: 1
+
+# Enable Hubble for observability
+hubble:
+  ui:
+    enabled: true
+    service: 
+      type: NodePort
+      nodePort: 31235
+  relay:
+    enabled: true
+  

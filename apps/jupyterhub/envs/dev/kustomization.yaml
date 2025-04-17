@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# resources:
-#   - ../../base
+resources:
+  - ../../base
 
 helmCharts:
 - name: jupyterhub
@@ -13,3 +13,9 @@ helmCharts:
     prePuller:
       hook:
         enabled: false # Disable prePuller hook - see https://github.com/jupyterhub/zero-to-jupyterhub-k8s/issues/1621
+    hub:
+      networkPolicy:
+        egress:
+          - ports:
+              - port: 6443
+              - port: 443
