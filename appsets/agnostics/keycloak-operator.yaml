@@ -31,7 +31,7 @@ spec:
 
   template:
     metadata:
-      name: "{{index .path.segments 1}}"
+      name: "{{index .path.segments 1}}-{{.nameNormalized}}"
       annotations:
         # ArgoCD application name
         argocd.argoproj.io/instance: "{{index .path.segments 1}}-{{index .path.segments 3}}"

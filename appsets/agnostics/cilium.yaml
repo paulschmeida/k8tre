@@ -8,7 +8,7 @@ spec:
   goTemplate: true
   # Configure template behavior - fail if a key is missing
   goTemplateOptions: ["missingkey=error"]
-  
+
   # Define how applications are discovered and generated
   generators:
     - matrix:
@@ -27,26 +27,26 @@ spec:
               selector:
                 matchLabels:
                   # This will match the environment from the path segment
-                  environment: '{{index .path.segments 3}}'
+                  environment: "{{index .path.segments 3}}"
 
   template:
     metadata:
-      name: '{{index .path.segments 1}}'
+      name: "{{index .path.segments 1}}-{{.nameNormalized}}"
       annotations:
         # ArgoCD application name
-        argocd.argoproj.io/instance: '{{index .path.segments 1}}-{{index .path.segments 3}}'
+        argocd.argoproj.io/instance: "{{index .path.segments 1}}-{{index .path.segments 3}}"
         # Sync wave to control the order of application sync
         # Lower numbers are synced first
         # This is set to -10 to ensure it syncs before other applications
-        argocd.argoproj.io/sync-wave: '-10'
+        argocd.argoproj.io/sync-wave: "-10"
     spec:
       project: default
       source:
         repoURL: https://github.com/k8tre/k8tre.git
         targetRevision: main
-        path: '{{.path.path}}'
+        path: "{{.path.path}}"
       destination:
-        server: '{{.server}}'
+        server: "{{.server}}"
         namespace: kube-system
       syncPolicy:
         automated:
