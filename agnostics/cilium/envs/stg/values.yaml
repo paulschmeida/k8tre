@@ -1,8 +1,7 @@
-cilium:
-  # Staging-specific configurations
-  debug:
-    enabled: false
-  resources:
-    limits:
-      cpu: 1000m
-      memory: 1Gi
+# Staging-specific configurations
+debug:
+  enabled: false
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
