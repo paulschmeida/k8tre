@@ -3,12 +3,3 @@ kind: Kustomization
 
 resources:
   - ../../base
-
-# Create a values.yaml file for ArgoCD to consume
-configMapGenerator:
-  - name: cnpg-values
-    namespace: cnpg-system
-    behavior: merge
-    literals:
-      - operatorVersion=cnpg-1.23.6.yaml
-      - targetRevision=release-1.23
