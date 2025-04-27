@@ -28,7 +28,11 @@ spec:
                 matchLabels:
                   # This will match the environment from the path segment
                   environment: "{{index .path.segments 3}}"
-
+                matchExpressions:
+                  # Exclude clusters that have the skip-cilium label set to true
+                  - key: skip-cilium
+                    operator: NotIn
+                    values: ["true"]
   template:
     metadata:
       name: "{{index .path.segments 1}}-{{.nameNormalized}}"
