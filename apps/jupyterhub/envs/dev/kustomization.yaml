@@ -20,6 +20,11 @@ helmCharts:
             - ports:
                 - port: 6443
                 - port: 443
+        config:
+          JupyterHub:
+            admin_access: true
+            admin_users:
+              - admin
       proxy:
         service:
           type: ClusterIP
