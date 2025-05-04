@@ -6,7 +6,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   # Name of the ApplicationSet resource
-  name: jupyterhub-appset
+  name: jupyterhub
   # The ApplicationSet is created in the ArgoCD namespace
   namespace: argocd
 spec:
@@ -45,7 +45,7 @@ spec:
       annotations:
         # ArgoCD application name
         argocd.argoproj.io/instance: "{{index .path.segments 1}}-{{index .path.segments 3}}"
-        argocd.argoproj.io/sync-wave: "10"
+        argocd.argoproj.io/sync-wave: "0"
     spec:
       # Assign to the default project
       project: default
@@ -63,14 +63,14 @@ spec:
         server: "{{.server}}"
         # Use namespace with pattern: <app-name>
         # e.g., jupyterhub
-        namespace: "{{index .path.segments 1}}"
+        namespace: jupyterhub
       # Sync policy for the application
       syncPolicy:
         automated:
           # Setting this to true will automatically delete resources that are no longer in Git
           # However, this breaks JupyterHub deployments as many resources are created by the application
           # and not managed by ArgoCD. So we set this to false. e.g., PVCs, singleuser server pods, etc.
-          prune: false
+          prune: true
           # Automatically sync if out of sync with Git
           selfHeal: true
         syncOptions:

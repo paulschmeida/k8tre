@@ -35,17 +35,14 @@ spec:
         # ArgoCD application name
         argocd.argoproj.io/instance: "{{index .path.segments 1}}-{{index .path.segments 3}}"
         # Sync wave to control the order of application sync
-        argocd.argoproj.io/sync-wave: "-10"
+        argocd.argoproj.io/sync-wave: "-5"
     spec:
       project: default
       source:
-        repoURL: https://github.com/cloudnative-pg/cloudnative-pg
+        repoURL: https://github.com/k8tre/k8tre.git
         # Use the targetRevision value from the environment-specific values file
-        targetRevision: "release-1.23"
-        path: releases
-        directory:
-          # Use the operatorVersion value from the environment-specific values file
-          include: "cnpg-1.23.6.yaml"
+        targetRevision: main
+        path: "{{.path.path}}"
       destination:
         server: "{{.server}}"
         namespace: cnpg-system
@@ -54,5 +51,5 @@ spec:
           prune: true
           selfHeal: true
         syncOptions:
-          - CreateNamespace=false
+          - CreateNamespace=true
           - ServerSideApply=true # https://github.com/cloudnative-pg/charts/issues/325
