@@ -42,7 +42,7 @@ jobs:
 
       - name: Run tests
         run: |
-          python -mpytest -v --color=yes
+          python -m pytest -v --color=yes
 
       - name: Get logs, including on failure
         if: always()
