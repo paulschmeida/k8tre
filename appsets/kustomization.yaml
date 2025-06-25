@@ -6,8 +6,11 @@ resources:
   - agnostics/cert-manager.yaml
   - agnostics/cilium.yaml
   - agnostics/cnpg.yaml
+  - agnostics/external-dns.yaml
   - agnostics/external-secrets.yaml
+  - agnostics/nginx.yaml
   - agnostics/secret-store.yaml
+  - agnostics/storage-class.yaml
   - identity/keycloak.yaml
   - workspaces/awms.yaml
   - workspaces/jupyterhub.yaml

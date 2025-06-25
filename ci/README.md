@@ -4,7 +4,9 @@ Scripts for Continuous Integration and development automation.
 
 ## `create-ci-secrets.py`
 
-Creates secrets in Kubernetes for use with External Secrets Operator. Automatically generates passwords, keys, and TLS certificates from a YAML configuration file.
+Creates secrets in Kubernetes for use with External Secrets Operator. Automatically generates passwords and cryptographic keys from a YAML configuration file.
+
+**Note:** TLS certificates are now managed by cert-manager and are not created by this script.
 
 ### Quick Start
 
@@ -19,9 +21,9 @@ uv run create-ci-secrets.py --context <kubectl-context> --dry-run
 ### Key Features
 
 - Auto-generates secure passwords and cryptographic keys
-- Creates self-signed TLS certificates
 - Configurable via `ci-secrets.yaml`
 - Supports dry-run mode and existing secret handling
+- TLS secrets are skipped (managed by cert-manager)
 
 ### Configuration Example
 

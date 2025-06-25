@@ -1,36 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-  - ../../base
-  - netpol_singleuser_world.yaml
-
 helmCharts:
   - name: jupyterhub
     repo: https://hub.jupyter.org/helm-chart/
-    version: 4.0.0 # Update to your desired version
+    version: 4.2.0
     releaseName: jupyterhub
     namespace: jupyterhub
-    valuesInline:
-      prePuller:
-        hook:
-          enabled: false # Disable prePuller hook - see https://github.com/jupyterhub/zero-to-jupyterhub-k8s/issues/1621
-      hub:
-        networkPolicy:
-          egress:
-            - ports:
-                - port: 6443
-                - port: 443
-        config:
-          JupyterHub:
-            admin_access: true
-            admin_users:
-              - admin
-      proxy:
-        service:
-          type: ClusterIP
-      singleuser:
-        cloudMetadata:
-          blockWithIptables: false
-        networkPolicy:
-          enabled: false
+    valuesFile: values.yaml
+      
+resources:
+  - ../../base
+  # - netpol_singleuser_world.yaml
+
+patches:
+  - path: certificate-patch.yaml
+    target:
+      kind: Certificate
+      name: xk8tre-tls

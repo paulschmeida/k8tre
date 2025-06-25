@@ -4,7 +4,6 @@
 #   "kubernetes>=29.0.0",
 #   "typer>=0.16.0",
 #   "pyyaml>=6.0.0",
-#   "cryptography>=45.0.3",
 # ]
 # ///
 """
@@ -12,7 +11,9 @@ CI Secrets Management for External Secrets Operator
 
 This script creates Kubernetes secrets in a secret-store namespace for use with
 External Secrets Operator in CI environments. It reads configuration from
-secrets.yaml and generates necessary passwords and certificates automatically.
+secrets.yaml and generates necessary passwords and keys automatically.
+
+Note: TLS secrets are now managed by cert-manager and are not created by this script.
 
 Usage:
     uv run create-ci-secrets.py --context k3d-dev [--dry-run] [--namespace secret-store]
@@ -20,7 +21,6 @@ Usage:
 """
 
 import base64
-import datetime
 import secrets
 import string
 import sys
@@ -29,10 +29,6 @@ from typing import Annotated, Any, Dict
 
 import typer
 import yaml
-from cryptography import x509
-from cryptography.hazmat.primitives import hashes, serialization
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.x509.oid import NameOID
 from kubernetes import client, config
 from kubernetes.client.rest import ApiException
 from rich.console import Console
@@ -42,7 +38,7 @@ console = Console()
 
 
 class SecretGenerator:
-    """Generates various types of secrets and certificates."""
+    """Generates various types of secrets like passwords and hex keys."""
 
     @staticmethod
     def generate_password(length: int = 16) -> str:
@@ -54,47 +50,6 @@ class SecretGenerator:
     def generate_hex_key(length: int = 32) -> str:
         """Generate a random hex key."""
         return secrets.token_hex(length)
-
-    @staticmethod
-    def generate_self_signed_cert(hostname: str, days: int = 365) -> tuple[str, str]:
-        """Generate a self-signed certificate and return (cert, key) as strings using cryptography."""
-
-        # Generate private key
-        key = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=2048,
-        )
-
-        subject = issuer = x509.Name(
-            [
-                x509.NameAttribute(NameOID.COUNTRY_NAME, "UK"),
-                x509.NameAttribute(NameOID.ORGANIZATION_NAME, "CI Test"),
-                x509.NameAttribute(NameOID.COMMON_NAME, hostname),
-            ]
-        )
-
-        cert = (
-            x509.CertificateBuilder()
-            .subject_name(subject)
-            .issuer_name(issuer)
-            .public_key(key.public_key())
-            .serial_number(x509.random_serial_number())
-            .not_valid_before(datetime.datetime.now())
-            .not_valid_after(datetime.datetime.now() + datetime.timedelta(days=days))
-            .add_extension(
-                x509.SubjectAlternativeName([x509.DNSName(hostname)]),
-                critical=False,
-            )
-            .sign(key, hashes.SHA256())
-        )
-
-        cert_content = cert.public_bytes(serialization.Encoding.PEM).decode()
-        key_content = key.private_bytes(
-            encoding=serialization.Encoding.PEM,
-            format=serialization.PrivateFormat.TraditionalOpenSSL,
-            encryption_algorithm=serialization.NoEncryption(),
-        ).decode()
-        return cert_content, key_content
 
 
 class CISecretsManager:
@@ -194,70 +149,6 @@ class CISecretsManager:
                 return False
             raise
 
-    def create_tls_secret(self, secret_name: str, hostname: str) -> bool:
-        """Create a TLS secret with self-signed certificate."""
-        try:
-            cert_content, key_content = self.generator.generate_self_signed_cert(
-                hostname
-            )
-
-            secret_exists = self.check_secret_exists(secret_name)
-            if secret_exists:
-                self.existing_secrets.append(secret_name)
-                if not self.overwrite:
-                    self.skipped_secrets.append(secret_name)
-                    console.print(
-                        f"[yellow]⚠[/yellow] Secret '{secret_name}' already exists and --overwrite is False. Skipping."
-                    )
-                    return True
-                else:
-                    self.overwritten_secrets.append(secret_name)
-
-            if self.dry_run:
-                action = "overwrite" if secret_exists and self.overwrite else "create"
-                console.print(
-                    f"[yellow]Would {action} TLS secret: {secret_name} for hostname: {hostname}[/yellow]"
-                )
-                return True
-
-            # Delete existing secret if it exists and overwrite is enabled
-            if secret_exists and self.overwrite:
-                try:
-                    self.v1.delete_namespaced_secret(
-                        name=secret_name, namespace=self.namespace
-                    )
-                    console.print(
-                        f"[yellow]Overwriting existing secret: {secret_name}[/yellow]"
-                    )
-                except ApiException as e:
-                    if e.status != 404:
-                        raise
-
-            # Create TLS secret
-            secret_body = client.V1Secret(
-                metadata=client.V1ObjectMeta(
-                    name=secret_name, namespace=self.namespace
-                ),
-                type="kubernetes.io/tls",
-                data={
-                    "tls.crt": base64.b64encode(cert_content.encode()).decode(),
-                    "tls.key": base64.b64encode(key_content.encode()).decode(),
-                },
-            )
-
-            self.v1.create_namespaced_secret(namespace=self.namespace, body=secret_body)
-            action = "Overwritten" if secret_exists and self.overwrite else "Created"
-            console.print(
-                f"[green]✓[/green] {action} TLS secret: {secret_name} for hostname: {hostname}"
-            )
-            return True
-
-        except Exception as e:
-            console.print(
-                f"[red]✗[/red] Failed to create TLS secret {secret_name}: {e}"
-            )
-            return False
-
     def create_generic_secret(self, secret_name: str, data: Dict[str, str]) -> bool:
         """Create a generic secret."""
         try:
@@ -344,14 +235,7 @@ class CISecretsManager:
                 f"\n[bold blue]=== Creating {secret_type} secret: {secret_name} ===[/bold blue]"
             )
 
-            if secret_type == "tls":
-                # Handle TLS secrets
-                tls_data = secret_config.get("data", {})
-                hostname = tls_data.get("hostname", "localhost")
-                if self.create_tls_secret(secret_name, hostname):
-                    success_count += 1
-
-            elif secret_type in ["generic", "opaque"]:
+            if secret_type in ["generic", "opaque"]:
                 # Handle generic/opaque secrets
                 data_list = secret_config.get("data", [])
                 processed_data = {}
@@ -364,6 +248,11 @@ class CISecretsManager:
 
                 if self.create_generic_secret(secret_name, processed_data):
                     success_count += 1
+            elif secret_type == "tls":
+                # TLS secrets are now managed by cert-manager, skipping
+                console.print(
+                    f"[yellow]⚠[/yellow] TLS secret '{secret_name}' is managed by cert-manager, skipping creation."
+                )
             else:
                 console.print(f"[red]✗[/red] Unsupported secret type: {secret_type}")
 
