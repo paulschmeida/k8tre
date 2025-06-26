@@ -42,3 +42,28 @@ secrets:
 
 Designed for CI environments to populate a Kubernetes secret store backend for External Secrets Operator testing, eliminating the need for cloud provider secret managers in development.
 
+### Usage Examples
+
+#### 1. Default behavior (skip existing secrets)
+
+```bash
+uv run create-ci-secrets.py --context k3d-dev
+```
+
+**Result**: Script will skip the secret because it already exists.
+
+#### 2. Overwrite mode (replace entire secret)
+
+```bash
+uv run create-ci-secrets.py --context k3d-dev --overwrite
+```
+
+**Result**: Secret will be completely replaced - original keys will be lost!
+
+#### 3. Merge mode (add new keys to existing secret)
+
+```bash
+uv run create-ci-secrets.py --context k3d-dev --merge-keys
+```
+
+**Result**: New keys will be added to the existing secret while preserving original keys.
