@@ -17,9 +17,11 @@ proxy:
     type: ClusterIP
 singleuser:
   cloudMetadata:
+    # This requires elevated permissions which should be avoided. Use network policies instead.
+    # See https://z2jh.jupyter.org/en/latest/administrator/security.html#audit-cloud-metadata-server-access
     blockWithIptables: false
   networkPolicy:
-    enabled: false
+    enabled: false # These are managed by Cilium network policies
 ingress:
   enabled: true
   hosts:
