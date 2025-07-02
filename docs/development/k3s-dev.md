@@ -13,6 +13,7 @@ This assumes you already have a [Ubuntu 24.04](https://ubuntu.com/download/deskt
 
 Create a K3s configuration file, then install K3S.
 Although most commands can be passed to the command line installer it is more convenient to define them in a [K3S configuration file](https://docs.k3s.io/installation/configuration#configuration-file).
+We'll be installing Cilium, so disable the default Flannel CNI.
 
 ```bash
 sudo mkdir -p /etc/rancher/k3s
@@ -21,7 +22,13 @@ node-name: k8tre-dev
 tls-san:
   - k8tre-dev
 cluster-init: true
-disable: traefik
+
+# Custom CNI: https://docs.k3s.io/networking/basic-network-options#custom-cni
+flannel-backend: none
+disable-network-policy: true
+disable:
+  - traefik
+  - servicelb
 EOF
 
 curl -sfSL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.4+k3s1 sh -
@@ -34,33 +41,54 @@ mkdir -p ~/.kube
 sudo cat /etc/rancher/k3s/k3s.yaml > ~/.kube/config
 ```
 
-### 3.2 Enable Required Add-ons
+### Setup Cilium CNI
 
-Enable MetalLB and hostpath-storage on both VMs:
+https://docs.cilium.io/en/stable/installation/k3s/
 
 ```bash
-# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
-# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+CILIUM_VERSION=1.17.5
+CILIUM_CLI_VERSION=v0.18.4
+K3S_POD_CIDR=10.42.0.0/16
+
+curl -sfSL https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-amd64.tar.gz | sudo tar -zxvf - -C /usr/local/bin/
+cilium install --version $CILIUM_VERSION --set=ipam.operator.clusterPoolIPv4PodCIDRList="$K3S_POD_CIDR" --set cni.chainingMode=portmap
+```
+
+Install portmap plugin for [hostport support](https://docs.cilium.io/en/v1.17/installation/cni-chaining-portmap/#k8s-install-portmap)
+
+```bash
+sudo mkdir -p /opt/cni/bin/
+curl -sfSL https://github.com/containernetworking/plugins/releases/download/v1.7.1/cni-plugins-linux-amd64-v1.7.1.tgz | sudo tar -zxvf - -C /opt/cni/bin/ ./portmap
+```
+
+Wait for Cilium to be ready, and optionally check Cilium it's working.
+```
+cilium status --wait
+# TODO: Remove this, takes several minutes to run
+cilium connectivity test
+```
+
+### 3.2 Enable Required Add-ons
+
+Enable hostpath-storage:
+
+```bash
 # kubectl apply -f https://raw.githubusercontent.com/helm/charts/master/stable/hostpath-provisioner/hostpath-provisioner.yaml
 
-# # For MetalLB, provide an IP address range (adjust based on your network)
-# kubectl patch configmap config -n metallb-system --type merge -p '{"data": {"config": "address-pools:\n- name: default\n  protocol: layer2\n  addresses:\n  - 192.168.123.50-192.168.123.100\n"}}'
+# Metallb is now installed by Argocd
 ```
 
 
 ## Setup ArgoCD
 
 ```bash
+ARGOCD_VERSION=v3.0.6
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.14.11/manifests/install.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/$ARGOCD_VERSION/manifests/install.yaml
 sleep 10
 kubectl wait --for=condition=Ready pods --all -n argocd --timeout=300s
-```
 
-Install ArgoCD CLI
-
-```bash
-sudo curl -sfSL https://github.com/argoproj/argo-cd/releases/download/v2.14.11/argocd-linux-amd64 -o /usr/local/bin/argocd
+sudo curl -sfSL https://github.com/argoproj/argo-cd/releases/download/$ARGOCD_VERSION/argocd-linux-amd64 -o /usr/local/bin/argocd
 sudo chmod a+x /usr/local/bin/argocd
 ```
 
@@ -81,7 +109,12 @@ argocd login localhost:8080 --username=admin --password="$ARGOCD_PASSWORD" --ins
 Mark the current cluster as the ArgoCD dev environment
 
 ```bash
-argocd cluster set in-cluster --label environment=dev --label secret-store=kubernetes
+argocd cluster set in-cluster \
+  --label environment=dev \
+  --label secret-store=kubernetes \
+  --label vendor=k3s \
+  --label skip-cilium=true \
+  --label skip-metallb=true
 argocd cluster get in-cluster
 ```
 
