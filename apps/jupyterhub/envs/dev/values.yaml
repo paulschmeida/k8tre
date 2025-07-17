@@ -43,9 +43,63 @@ hub:
       validate_server_cert: false
     JupyterHub:
       authenticator_class: generic-oauth
+      # Makes testing easier
+      default_url: /hub/home
+    KubeSpawner:
+      # Allow routing by hostname
+      services_enabled: true
+
+  # extraEnv:
+
+  # Can't use helm --set-file, so pass in as a configMap using extraVolumes
+  # extraConfig:
+  #   10-notatre:
+  extraVolumeMounts:
+    - name: jupyterhub-extraconfig
+      mountPath: /usr/local/etc/jupyterhub/jupyterhub_config.d/jupyterhub_extraconfig.py
+      subPath: jupyterhub_extraconfig.py
+  extraVolumes:
+    - name: jupyterhub-extraconfig
+      configMap:
+        name: jupyterhub-extraconfig
+        items:
+          - key: jupyterhub_extraconfig.py
+            path: jupyterhub_extraconfig.py
+
+  existingSecret: jupyterhub-secret
+
+  services:
+    guacamole:
+      url: http://guacamolehandler:8040
+      # this allows us to get the user's username
+      oauth_client_allowed_scopes:
+        - "read:users!user"
+      # We subsequently need to use the services own API token to get privileged
+      # information about the server (see loadRoles)
+      # api_token: jupyterhub-secret
+      oauth_no_confirm: true
+
+  loadRoles:
+    # grant all users access to all services
+    user:
+      scopes:
+        - "access:services"
+        - "self"
+    # Allow the guacamole-handler service to access detailed server info
+    guacamole-handler:
+      scopes:
+        - "read:servers"
+        - "admin:server_state"
+      services:
+        - guacamole
+
+
+
+
 proxy:
   service:
     type: ClusterIP
+
 singleuser:
   cloudMetadata:
     # This requires elevated permissions which should be avoided. Use network policies instead.
@@ -53,6 +107,73 @@ singleuser:
     blockWithIptables: false
   networkPolicy:
     enabled: false # These are managed by Cilium network policies
+
+  # storage:
+  #   # Everything is done dynamically in the profile handling
+  #   type: none
+
+  image:
+    # name: ghcr.io/manics/jupyter-desktop-winxp
+    # tag: latest
+    name: ghcr.io/manics/jupyterhub-singleuser-static-redirector
+    tag: main
+    pullPolicy: Always
+  # Use default entrypoint
+  cmd:
+  extraEnv:
+    STATIC_REDIRECTOR_DESTINATION: https://jupyter.dev.k8tre.internal/services/guacamole/
+    STATIC_REDIRECTOR_AUTOREDIRECT: "true"
+  extraContainers:
+    - name: ubuntu-mate
+      # Set by kubespawner_override, but this will automatically pull it
+      image: "ghcr.io/manics/ubuntu-mate-vncrdp:main"
+      command:
+        # Set by modify_pod_hook
+        - "false"
+      ports:
+        - containerPort: 3389
+          name: rdp
+          protocol: TCP
+        - containerPort: 5901
+          name: vnc
+          protocol: TCP
+      env: []
+
+  # startTimeout: 300
+  # Use the default UID from the image
+  uid:
+  # networkPolicy:
+    # Uncomment the following to use internal coredns-restricted
+    # egressAllowRules:
+    #   dnsPortsCloudMetadataServer: false
+    #   dnsPortsKubeSystemNamespace: false
+    #   dnsPortsPrivateIPs: false
+    #   nonPrivateIPs: false
+    #   privateIPs: false
+    # egress:
+    #   - to:
+    #       - podSelector:
+    #           matchLabels:
+    #             user-pod-dns: "true"
+    #             app.kubernetes.io/instance: coredns-restricted
+    #             app.kubernetes.io/name: coredns
+    #     ports:
+    #       - protocol: UDP
+    #         port: 53
+
+    # Allow ingress from guacd
+    # ingress:
+    #   - from:
+    #       - podSelector:
+    #           matchLabels:
+    #             app.kubernetes.io/component: guacd
+    #             app.kubernetes.io/name: guacamole
+    #   - ports:
+    #       - port: 3389
+    #         protocol: TCP
+    #       - port: 5901
+    #         protocol: TCP
+
 ingress:
   enabled: true
   hosts:
@@ -66,3 +187,5 @@ ingress:
         - jupyter.dev.k8tre.internal
       secretName: jupyter-k8tre-tls
 
+debug:
+  enabled: true

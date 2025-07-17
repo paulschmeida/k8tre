@@ -73,7 +73,7 @@ jupyterhub_url = args.jupyterhub_url
 verify = args.verify
 if verify.lower() == "true":
     verify = True
-if verify.lower() == "false":
+elif verify.lower() == "false":
     verify = False
 
 keycloak_admin = KeycloakAdmin(
