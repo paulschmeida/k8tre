@@ -3,7 +3,7 @@ topic: DNS
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/5
 k8tre-statements:
-  spec: Default in-cluster DNS services i.e. coreDNS is sufficient. External DNS can be delegated to an organisation's existing DNS server/provider.  
+  spec: The TRE may use the default in-cluster DNS services e.g. coreDNS. External DNS can be delegated to an organisation's existing DNS server/provider.  
 ---
 
 {{ spec_content(page.meta) }}
