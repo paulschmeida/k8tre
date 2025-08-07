@@ -3,7 +3,7 @@ topic: Database
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/9
 k8tre-statements:
-  spec: K8TRE Specification-conformant apps shall allow the use of the default DB. A K8TRE should integrate with an organisation's existing databases where appropriate.
+  spec: The TRE must offer a Kubernetes-native mechanism for deploying relational databases on the cluster, and optionally can also allow microservices to connect to off-cluster databases.
 ---
 
 {{ spec_content(page.meta) }}
