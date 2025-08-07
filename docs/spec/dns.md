@@ -12,7 +12,7 @@ k8tre-statements:
 
 1. **What will provide in-cluster DNS?**
 
-    The default CoreDNS is acceptable, since it allows access to services by servicename.namespace without a separate DNS server. Other
+    The default CoreDNS is acceptable, since it allows access to services by servicename.namespace without a separate DNS server.
 
 2. **Do we need to consider external DNS too - if so, what will provide this?**
 
