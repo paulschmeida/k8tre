@@ -12,8 +12,4 @@ k8tre-statements:
 
 1. **What will provide in-cluster DNS?**
 
-    The default CoreDNS is acceptable, since it allows access to services by servicename.namespace without a separate DNS server.
-
-2. **Do we need to consider external DNS too - if so, what will provide this?**
-
-    K8TRE implementers should consider using a Kubernetes-native solution for automatically managing entries (creating, updating, deleting) in off-cluster external DNS zones based on annotations on ingress objects. This allows these entries to be managed as part of the application's lifecycle on/in K8TRE.
+    The default CoreDNS will be suitable for most TRE implementers, since it allows access to services by servicename.namespace without a separate DNS server. A TRE implementer may use a different DNS implementation if it is necessary.
