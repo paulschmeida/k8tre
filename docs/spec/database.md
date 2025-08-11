@@ -3,7 +3,7 @@ topic: Database
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/9
 k8tre-statements:
-  spec: The TRE must offer a Kubernetes-native mechanism for deploying relational databases on the cluster, and may also allow microservices to connect to off-cluster databases.
+  spec: Databases should be treated as attached resources and may be deployed on the cluster, or apps may connect to off-cluster databases.
 ---
 
 {{ spec_content(page.meta) }}
