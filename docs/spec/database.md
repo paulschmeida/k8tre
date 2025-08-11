@@ -12,7 +12,7 @@ k8tre-statements:
 
 1. **What should K8TRE Specification say about *in-cluster* DBs and what should it say about *off-cluster* DBs?**
 
-    Databases should be attached resources, explicitly referenced. TRE administrators may use an externally provided database service, such as AWS RDS, but where applications can use an on-cluster database, they should consider using the CNPG operator to deploy an instance of Postgres DB, rather than using a different Postgres helm chart and introducing an additional a dependency.
+    Databases should be attached resources, explicitly referenced. TRE administrators may use an externally provided database service, such as AWS RDS, but where applications can use an on-cluster database, they should consider using the CNPG operator to deploy an instance of Postgres DB, rather than using a different Postgres helm chart which introduces an additional dependency.
 
 2. **How prescriptive should the K8TRE Specification be in dictating how databases are deployed and managed on-cluster?**
 
