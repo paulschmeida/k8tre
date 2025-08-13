@@ -113,8 +113,8 @@ argocd cluster set in-cluster \
   --label environment=dev \
   --label secret-store=kubernetes \
   --label vendor=k3s \
-  --label skip-cilium=true \
   --label skip-metallb=true
+  
 argocd cluster get in-cluster
 ```
 
