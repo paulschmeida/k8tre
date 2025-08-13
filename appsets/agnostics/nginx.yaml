@@ -28,7 +28,7 @@ spec:
       name: "{{index .path.segments 1}}-{{.nameNormalized}}"
       annotations:
         argocd.argoproj.io/instance: "{{index .path.segments 1}}-{{index .path.segments 4}}"
-        argocd.argoproj.io/sync-wave: "-8" # Install after Cilium and Metallb
+        argocd.argoproj.io/sync-wave: "-8" # Install after Metallb
     spec:
       project: default
       source:
