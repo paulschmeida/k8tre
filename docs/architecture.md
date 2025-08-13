@@ -20,6 +20,8 @@ The K8TRE Reference Implementation uses the default high- and low-level containe
 
 ### Networking
 
+Cilium is the CNI used by the K8TRE Reference Implementation. All external access to applications/services is via the ingress object/load-balancer.
+
 ### Secrets
 
 ### Storage
