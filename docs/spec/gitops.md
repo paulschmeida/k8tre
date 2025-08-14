@@ -2,7 +2,7 @@
 topic: GitOps
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/7
-k8tre-statements:
+k8tre_statements:
   spec: The TRE should employ GitOps practices when provisioning both K8TRE resources as well as any other required infrastructure level resources within the TRE.
 ---
 
