@@ -3,21 +3,17 @@ topic: Load Balancers
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/3
 k8tre_statements:
-  spec: External load balancers may be provisioned automatically by Kubernetes controllers, or managed manually outside the cluster. External load balancers should be Network Load Balancers (Layer 4) to facilitate end-to-end TLS encryption.
+  spec: Off-cluster load balancers may be provisioned by Kubernetes controllers, or provisioned manually outside the cluster. The TRE must be able to handle inbound traffic and route it to services.
 ---
 
 {{ spec_content(page.meta) }}
 
 **Questions**: 
 
-1.  **Where should load balancers be used in the K8TRE?**
+1.  **Are load balancers mandatory for a K8TRE?**
 
-    Mandate one in front of the cluster ingress controller? 
+    No - the use of an external (i.e. off-cluster) load balancer is recommended, but not mandatory unless you're using services of type `LoadBalancer`.
 
-2.  **Should a K8TRE be permitted to use a non-controller-provisioned external load balancer?**
+2.  **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
 
-    Yes - as long as there is one..?
-
-3.  **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
-
-    ?
+    If one load balancer can be used to support multiple applications, then this is encouraged to reduce optentially high cloud costs.
