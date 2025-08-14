@@ -3,7 +3,7 @@ topic: Networking
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/4
 k8tre_statements:
-  spec: The TRE's CIDR/VPC/VNET is solely for in-cluster use; all external access to applications/services must be via the ingress controller/load-balancer. The TRE's must use a network plugin/CNI that fully supports Network Policy enforcement. 
+  spec: All external access to applications/services must be via the ingress/gateway. The TREs must use a network plugin/CNI that fully supports Network Policy enforcement. 
 ---
 
 {{ spec_content(page.meta) }}
@@ -16,4 +16,4 @@ k8tre_statements:
 
 2. **Should a K8TRE's CIDR be solely for in-cluster use only, or should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
 
-    No. A K8TRE's CIDR/VPC/VNET is solely for in-cluster use only so all external access is via the ingress/load-balancer
+    No. A K8TRE's CIDR/VPC/VNET is solely for in-cluster use only so all external access is via the ingress/gateway.
