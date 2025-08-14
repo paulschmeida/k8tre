@@ -1,41 +1,17 @@
-# In this folder
+# Introduction
 
-Each markdown file in this folder contains K8TRE Specification statements, formatted using YAML front matter. They have been derived from the [k8tre GitHub Org Discussions](https://github.com/orgs/k8tre/discussions) and further review by Pull Request. The status of these statements is reflected in the table below:
+Each page in this folder contains a K8TRE Specification statement pertaining to a particular topic within the K8TRE Specification. They have been derived from [k8tre GitHub Org Discussions](https://github.com/orgs/k8tre/discussions), as well as discussion within the K8TRE working group, and reviewed by GitHub Pull Request for publication to this site.
 
-| Topic                                       | Discussion Link                              | Status |
-|---------------------------------------------|----------------------------------------------|--------|
-| [BYO Software](./byosoftware.md)            | https://github.com/orgs/k8tre/discussions/8  | Draft  |
-| [Container Runtimes](./containerruntimes.md)| https://github.com/orgs/k8tre/discussions/12 | Draft  |
-| [Database](./database.md)                   | https://github.com/orgs/k8tre/discussions/9  | Draft  |
-| [DNS](./dns.md)                             | https://github.com/orgs/k8tre/discussions/5  | Draft  |
-| [GitOps](./gitops.md)                       | https://github.com/orgs/k8tre/discussions/7  | Draft  |
-| [Load Balancers](./loadbalancers.md)        | https://github.com/orgs/k8tre/discussions/3  | Draft  |
-| [Networking](./networking.md)               | https://github.com/orgs/k8tre/discussions/4  | Draft  |
-| [Secrets](./secrets.md)                     | https://github.com/orgs/k8tre/discussions/6  | Draft  |
-| [Storage](./storage.md)                     | https://github.com/orgs/k8tre/discussions/2  | Draft  |
+There a few important clarifications regarding the interpretation of these Specification statements:
 
+1. **Scope** - The K8TRE Specification applies to Kubernetes-based TRE **codebases**. It is written for an audience of K8TRE codebase developers and defines what a K8TRE-compatible codebase must provide. This includes the K8TRE Reference Implementation as well as other codebases such as the UCL ARC TRE and the FRIDGE TRE.
 
-> [!NOTE]  
-> The distinction between "the K8TRE Specification", "a K8TRE", and "the K8TRE Reference Implementation".
-> The K8TRE Specification is a SATRE-conformant Specification for how a K8S TRE should be built. *A* K8TRE is an implementation of a K8TRE Specification-compliant TRE. The K8TRE Reference Implementation is the official K8TRE project's implementation of a K8TRE Specification-compliant TRE.
+2. **Technology Neutrality** - Beyond its explicit reliance on Kubernetes, the specification is technology-agnostic. However, it may prescribe in detail the capabilities that must be provided by a codebase.
 
-# Additional Decisions
-## K8TRE MVP
-
-*K8TRE Reference Implementation Statement*: The K8TRE reference implementation MVP will be deployable on Azure AKS, AWS EKS, and K3S platforms, providing researcher workspaces in the form of containers, and using ArgoCD as the CI/CD tool.
-
-*K8TRE Specification Statement*: The K8TRE specification MVP is a specification for how a K8TRE-compliant TRE should be built. It will therefore not promote a particular way to build a K8S-based TRE, but rather it will make statements that allow an implementer (of an entire TRE or a TRE component) to maximise their component's reusability in the K8TRE ecosystem.
+3. **Applicability** – These statements are directed at those developing K8TRE-compliant codebases. They do not apply to administrators or operators running a TRE built on such a codebase (a "deployment").
 
 ## Design Principles
 
-1. The K8TRE Reference Implementation will support multiple projects in the same TRE, but it should also be lightweight enough that it's trivial to run one K8TRE instance per project, with each project having it's own dedicated Kubernetes cluster and networking with additional firewalling.
-2. The K8TRE Specification will define the capabilities that must be provided by the underlying Kubernetes platform.
-3. Decoupled, microservice-like archtiecture
-4. 
-
-## Prerequisite knowledge for deploying K8TRE
-
-*Questions*: 
-1. How much knowledge of Kubernetes should they have?
-2. How much knowledge of ArgoCD should they have?
-3. What else should they know?
+1. The K8TRE Specification will define the capabilities that must be provided by the underlying Kubernetes platform.
+2. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Speicifcation should leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
+3. Widespread compliance with the K8TRE Specification should result in different TRE developers in the TRE community being able to deploy each other's components in their own TRE's with minimal changes to code, only changes to configuration. In other words, increased portability of open-source TRE components and applications.

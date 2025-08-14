@@ -16,6 +16,8 @@ The K8TRE Reference Implementation includes the CNPG operator and a default Post
 
 ### DNS
 
+For in-cluster services, the Kubernetes default CoreDNS will be used, so clients can access services by servicename.namespace without a separate DNS server.
+
 ### GitOps
 
 The K8TRE Reference Implementation uses ArgoCD installed on a management cluster to manage nearly all resources on the child cluster(s) it manages. Here "nearly all" means ArgoCD will not be responsible for creating/destroying workspaces. JupyterHub is responsible for creating/destroying workspaces.
