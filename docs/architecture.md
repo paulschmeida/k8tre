@@ -20,7 +20,7 @@ For in-cluster services, the Kubernetes default CoreDNS will be used, so clients
 
 ### GitOps
 
-### Load Balancers
+### Ingress
 
 ### Networking
 

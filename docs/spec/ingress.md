@@ -1,9 +1,9 @@
 ---
-topic: Load Balancers
+topic: Ingress
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/3
 k8tre_statements:
-  spec: Off-cluster load balancers may be provisioned by Kubernetes controllers, or provisioned manually outside the cluster. The TRE must be able to handle inbound traffic and route it to services.
+  spec: Off-cluster load balancers may be provisioned by cloud load balancer controllers, or provisioned manually outside the cluster. The TRE must be able to handle inbound traffic and route it to services.
 ---
 
 {{ spec_content(page.meta) }}
@@ -16,4 +16,4 @@ k8tre_statements:
 
 2.  **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
 
-    If one load balancer can be used to support multiple applications, then this is encouraged to reduce potentially high cloud costs.
+    If one load balancer can be used to support multiple applications (e.g. AWS ALB), then this is encouraged to reduce potentially high cloud costs.
