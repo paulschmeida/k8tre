@@ -14,6 +14,6 @@ k8tre_statements:
 
     Full support for K8S Network Policies? i.e. not AWS VPC CNI or Azure CNI..?
 
-2. **Should a K8TRE's CIDR be solely for in-cluster use only, or should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
+2. **Should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
 
     No. A K8TRE's CIDR/VPC/VNET is solely for in-cluster use only so all external access is via the ingress/gateway.
