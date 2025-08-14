@@ -13,5 +13,5 @@ There a few important clarifications regarding the interpretation of these Speci
 ## Design Principles
 
 1. The K8TRE Specification will define the capabilities that must be provided by the underlying Kubernetes platform.
-2. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Speicifcation should leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
+2. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Specification should leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
 3. Widespread compliance with the K8TRE Specification should result in different TRE developers in the TRE community being able to deploy each other's components in their own TREs with minimal changes to code, only changes to configuration. In other words, increased portability of open-source TRE components and applications.
