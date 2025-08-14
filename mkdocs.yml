@@ -52,7 +52,15 @@ nav:
   - Reference: reference.md
   - Contributing: contributing.md
   - Specification:
+      - Introduction: spec/README.md
+      - Glossary: spec/glossary.md
       - The K8TRE Specification: 
           - BYO Software : spec/byosoftware.md
-          - Container Runitimes: spec/containerruntimes.md
+          - Container Runtimes: spec/containerruntimes.md
           - Databases : spec/database.md
+          - DNS : spec/dns.md
+          - GitOps : spec/gitops.md
+          - Load Balancers : spec/loadbalancers.md
+          - Networking : spec/networking.md
+          - Secrets : spec/secrets.md
+          - Storage : spec/storage.md
