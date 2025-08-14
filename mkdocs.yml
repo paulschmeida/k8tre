@@ -52,8 +52,8 @@ nav:
   - Reference: reference.md
   - Contributing: contributing.md
   - Specification:
-      - Introduction: spec/placeholder
-      - Glossary: spec/placeholder
+      - Introduction: spec/README.md
+      - Glossary: spec/glossary.md
       - The K8TRE Specification: 
           - BYO Software : spec/byosoftware.md
           - Container Runtimes: spec/containerruntimes.md

@@ -16,6 +16,8 @@ The K8TRE Reference Implementation includes the CNPG operator and a default Post
 
 ### DNS
 
+For in-cluster services, the Kubernetes default CoreDNS will be used, so clients can access services by servicename.namespace without a separate DNS server.
+
 ### GitOps
 
 ### Load Balancers
