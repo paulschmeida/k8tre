@@ -2,7 +2,7 @@
 topic: DNS
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/5
-k8tre-statements:
+k8tre_statements:
   spec: A TRE that exposes services to consumers outside of its Kubernetes cluster must employ a Kubernetes-native approach for deploying DNS records that allow external consumers to discover these services. The management of these the external DNS entities should be performed together with lifecycle operations, such as deployments or upgrades, of their corresponding services within the TRE.
 ---
 
