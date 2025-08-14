@@ -2,7 +2,7 @@
 topic: Load Balancers
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/3
-k8tre-statements:
+k8tre_statements:
   spec: External load balancers may be provisioned automatically by Kubernetes controllers, or managed manually outside the cluster. External load balancers should be Network Load Balancers (Layer 4) to facilitate end-to-end TLS encryption.
 ---
 

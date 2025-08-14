@@ -2,7 +2,7 @@
 topic: GitOps
 date: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/7
-k8tre-statements:
+k8tre_statements:
   spec:
   refimpl: K8TRE will follow GitOps principles and will use ArgoCD installed on a management cluster to manage nearly all resources on the child cluster(s) it manages. Here "nearly all" means ArgoCD will not be responsible for creating/destroying workspaces. 
 ---
