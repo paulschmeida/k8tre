@@ -16,4 +16,4 @@ k8tre_statements:
 
 2.  **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
 
-    If one load balancer can be used to support multiple applications, then this is encouraged to reduce optentially high cloud costs.
+    If one load balancer can be used to support multiple applications, then this is encouraged to reduce potentially high cloud costs.
