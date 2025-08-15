@@ -1,6 +1,6 @@
 ---
 topic: Networking
-date: 2025-05-30
+last_updated: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/4
 k8tre_statements:
   spec: A K8TRE's CIDR/VPC/VNET is solely for in-cluster use; all external access to applications/services is via the ingress object/load-balancer. A K8TRE's CNI must have full support for K8S Network Policies. 

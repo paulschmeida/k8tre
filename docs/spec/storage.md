@@ -1,6 +1,6 @@
 ---
 topic: Storage
-date: 2025-05-30
+last_updated: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/2
 k8tre_statements:
   spec: PVCs from K8TRE components or applications should request from a set of pre-defined storage classes, not simply from the default storage class.  
