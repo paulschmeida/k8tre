@@ -16,9 +16,9 @@ k8tre_statements:
 
 ## Implementation Compliance
 
-K8TRE Reference Implementation:
+K8TRE Reference Implementation: uses ArgoCD installed on a management cluster to manage nearly all resources on the child cluster(s) it manages. Here "nearly all" means ArgoCD will not be responsible for creating/destroying workspaces. JupyterHub is responsible for creating/destroying workspaces.
 
-UCL ARC TRE: 
+UCL ARC TRE: uses GitOps to provision all TRE resources, as well as all infrastructure level resources, to both staging and production environments.
 
 FRIDGE:
 

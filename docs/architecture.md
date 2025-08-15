@@ -16,7 +16,7 @@ The K8TRE Reference Implementation includes the CNPG operator and a default Post
 
 ### DNS
 
-For in-cluster services, the Kubernetes default CoreDNS will be used, so clients can access services by servicename.namespace without a separate DNS server.
+Services within K8TRE are discoverable as normal through CoreDNS with the usual format of `<service-name>.<namespace>.svc.cluster.local`. Applications are allowed to automatically create, update and delete DNS entries required to expose their services by using ExternalDNS running in the clusters.
 
 ### GitOps
 
@@ -24,9 +24,11 @@ The K8TRE Reference Implementation uses ArgoCD installed on a management cluster
 
 ### Ingress
 
+Currently implements an NGINX Ingress Controller 
+
 ### Networking
 
-Cilium is the CNI used by the K8TRE Reference Implementation. All external access to applications/services is via the ingress object/load-balancer.
+K8TRE uses Cilium as the default Container Network Interface (CNI) to provide advanced network security through network policies. Cilium is installed before ArgoCD during cluster setup and includes Hubble for network observability.
 
 ### Secrets
 

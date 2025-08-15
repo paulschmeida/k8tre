@@ -20,9 +20,9 @@ k8tre_statements:
 
 ## Implementation Compliance
 
-K8TRE Reference Implementation:
+K8TRE Reference Implementation: currently implements an NGINX Ingress Controller 
 
-UCL ARC TRE: 
+UCL ARC TRE: implements an NGINX Ingress Controller exposed to a AWS Network Load Balancer. Cloudflare is the only public origin allowed, ensuring no requests go to the NLB directly.
 
 FRIDGE:
 

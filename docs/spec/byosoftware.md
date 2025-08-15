@@ -18,7 +18,7 @@ k8tre_statements:
 
 K8TRE Reference Implementation: 
 
-UCL ARC TRE: Supports Bring-your-own Software, encouraging researchers to create Docker containers outside the TRE with all their software tools in it, then ingress the image into the TRE through the airlock.
+UCL ARC TRE: supports Bring-your-own Software, encouraging researchers to create Docker containers outside the TRE with all their software tools in it, then ingress the image into the TRE through the airlock.
 
 FRIDGE:
 

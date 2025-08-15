@@ -16,7 +16,7 @@ k8tre_statements:
 
 ## Implementation Compliance
 
-K8TRE Reference Implementation: Public and private DNS zones are managed by ExternalDNS running in the clusters. Traffic is routed to the Gateway service (with hostname gw.k8tre.internal for prod, gw.dev.k8tre.internal for dev etc.) using a series of AppGW listeners, host rewrite rules, and backend pool targets.
+K8TRE Reference Implementation: Services within K8TRE are discoverable as normal through CoreDNS with the usual format of `<service-name>.<namespace>.svc.cluster.local`. Applications are allowed to automatically create, update and delete DNS entries required to expose their services by using ExternalDNS running in the clusters.
 
 UCL ARC TRE: DNS records are not created by applications running on the cluster, rather by the administrators who manage the DNS records together with the lifecycle operations of the corresponding services.
 

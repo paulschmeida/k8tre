@@ -20,9 +20,9 @@ k8tre_statements:
     
 ## Implementation Compliance
 
-K8TRE Reference Implementation:
+K8TRE Reference Implementation: K8TRE uses Cilium as the default Container Network Interface (CNI) to provide advanced network security through network policies. Cilium is installed before ArgoCD during cluster setup and includes Hubble for network observability.
 
-UCL ARC TRE: 
+UCL ARC TRE: the (Kubernetes-based) system plane uses the Cilium CNI and network policies to control east-west traffic within the EKS cluster, allowing access to only the services/CIDRs that are required.
 
 FRIDGE:
 
