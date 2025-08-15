@@ -1,6 +1,6 @@
 ---
 topic: Ingress
-date: 2025-05-30
+last_updated: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/3
 k8tre_statements:
   spec: Off-cluster load balancers may be provisioned by cloud load balancer controllers, or provisioned manually outside the cluster. The TRE must be able to handle inbound traffic and route it to services.

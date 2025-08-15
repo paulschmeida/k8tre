@@ -20,6 +20,8 @@ For in-cluster services, the Kubernetes default CoreDNS will be used, so clients
 
 ### GitOps
 
+The K8TRE Reference Implementation uses ArgoCD installed on a management cluster to manage nearly all resources on the child cluster(s) it manages. Here "nearly all" means ArgoCD will not be responsible for creating/destroying workspaces. JupyterHub is responsible for creating/destroying workspaces.
+
 ### Ingress
 
 ### Networking
