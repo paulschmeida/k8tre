@@ -18,3 +18,12 @@ k8tre_statements:
 
     The specification should remain non-prescriptive, but it ought to encourage modern best practices for database management, such as using Kubernetes-native tools like database operators (e.g. the CloudNativePG operator), to align with a decoupled, microservices-oriented architecture.
 
+## Implementation Compliance
+
+K8TRE Reference Implementation: includes the CNPG operator and a default Postgres database. Applications can deploy their own Postgres databases in a consistent manner using the operator.
+
+UCL ARC TRE: uses the CNPG operator to provision Postgres databases for use by applications on the cluster.
+
+FRIDGE:
+
+Director: 

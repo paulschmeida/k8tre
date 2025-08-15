@@ -17,3 +17,13 @@ k8tre_statements:
 2. **Should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
 
     No. A K8TRE's CIDR/VPC/VNET is solely for in-cluster use only so all external access is via the ingress/gateway.
+    
+## Implementation Compliance
+
+K8TRE Reference Implementation:
+
+UCL ARC TRE: 
+
+FRIDGE:
+
+Director: 

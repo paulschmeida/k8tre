@@ -17,3 +17,13 @@ k8tre_statements:
 2.  **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
 
     If one load balancer can be used to support multiple applications (e.g. AWS ALB), then this is encouraged to reduce potentially high cloud costs.
+
+## Implementation Compliance
+
+K8TRE Reference Implementation:
+
+UCL ARC TRE: 
+
+FRIDGE:
+
+Director: 
