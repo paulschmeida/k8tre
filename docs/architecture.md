@@ -24,6 +24,8 @@ For in-cluster services, the Kubernetes default CoreDNS will be used, so clients
 
 ### Networking
 
+Cilium is the CNI used by the K8TRE Reference Implementation. All external access to applications/services is via the ingress object/load-balancer.
+
 ### Secrets
 
 ### Storage
