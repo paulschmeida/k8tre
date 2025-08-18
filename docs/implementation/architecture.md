@@ -12,12 +12,12 @@ The infrastructure layer provides everything that is required to support a CNCF-
 
 - Networking: VNETs, SNETs, NSGs, Firewalls, DNS, Load balancers
 - Identity management for IaaS/PaaS (eg. Entra for Azure); This is distinct from identity management within K8TRE itself
-- Storage provide: eg. Longhorn or NFS for on-prem deployments, Azure Disk, File Share or Blob for AKS, etc.
+- Storage provision: eg. Longhorn or NFS for on-prem deployments, Azure Disk, File Share or Blob for AKS, etc.
 - Infrastructure monitoring tools (eg. Proxmox monitoring, Azure Log Analytics)
 - Secrets management (Azure Key vault, AWS Secrets manager)
 - One or more Kubernetes clusters (K3s, AKS, EKS) with Cilium as the CNI and ArgoCD for GitOps
 
-??? warning "K8TRE needs Cilium and ArgoCD"
+!!! warning "K8TRE needs Cilium and ArgoCD"
 
     K8TRE needs **Cilium** as the default CNI with Layer 7 capabilities turned on for the other layers to work.
     This requires clusters to be configured correctly. For instance, K3S must be started with the flannel-backend turned off. AKS provides managed Cilium for free but charges for L7 capabilities. It is possible to swap this with BYO Cilium CNI.

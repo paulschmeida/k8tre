@@ -26,10 +26,17 @@ Moreover, default mount options may vary between vendors and will require standa
 
 K8TRE solves this by providing a set of storage classes that application developers can use in their manifests without having to concern themselves with the underlying technology backing the storage class. 
 
-## Ingress
+## Ingress Management
 
-K8TRE currently implements [Ingress NGINX Controller](https://kubernetes.github.io/ingress-nginx/) and in future will offer support for the newer [Gateway API](https://kubernetes.io/docs/concepts/services-networking/gateway/).
-Vendor-specific manifests are provided for Nginx. 
+### Internal Cilium Gateway
+K8TRE supports and manages ingress through the implementation of a k8s cluster [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/) instance (cilium-gateway) based on Cilium's Gateway API controller to support application traffic routing. By default a Gateway instance is deployed along with a k8s Service of type loadbalancer (cilium-gateway-internal-gateway). Dependent on the target infrastructure, this Service should be associated with a private load balancer within the underlying private network the K8TRE cluster resides. For the k8TRE MVP on Azure, the Gateway Service is annotated to provision the internal load balancer on the K8TRE cluster's private VNet. Note, for K8TRE operators that require a public ingress additional infrastructure is required to route traffic from a public source to a cluster's internal gateway (load balancer).
+
+### Public Gateway
+K8TRE's internal gateway can manage application traffic from within the target infrastructure's private network. However, the internal gateway and associated private load balancer does not allow for traffic routing from the public internet. Where a TRE operator must support restricted public network access, a public load balancer (reverse proxy) should be provisioned within the underlying infrastructure that can route traffic to the internal/private Gateway load balancer. For example, the K8TRE Azure infrastructure recipe project implements Azure Application Gateway (v2) that provides a public IP address, routing rules and backend pool where the K8TRE gateway internal load balancer is configured as a backend pool target where relevant traffic is forwarded. For more information on the implementation of this, see the K8TRE-Azure infrastructure project [Public Gateway documentation](https://k8tre.github.io/k8tre-azure/public_gateway/).  
+
+### NGINX Controller
+K8TRE service ingress should where possible establish HTTP routes that utilise the K8TRE internal gateway for host/path-based routing and adopt the Gateway API approach. However, it remains possible for services to define an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) managed by an [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/) in K8TRE where required. As support for Gateway API grows and Ingress support is frozen, K8TRE's ingress support will reflect this transition.   
+
 
 ## DNS
 
