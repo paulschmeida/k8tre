@@ -19,15 +19,31 @@ The infrastructure layer provides everything that is required to support a CNCF-
 
 !!! warning "K8TRE needs Cilium and ArgoCD"
 
-    K8TRE needs **Cilium** as the default CNI with Layer 7 capabilities turned on for the other layers to work.
-    This requires clusters to be configured correctly. For instance, K3S must be started with the flannel-backend turned off. AKS provides managed Cilium for free but charges for L7 capabilities. It is possible to swap this with BYO Cilium CNI.
+    K8TRE requires **Cilium** as the default CNI with Layer 7 capabilities turned on for the other layers to work.
+    This requires clusters to be configured correctly. For instance, K3S must be started with the flannel-backend turned off. AKS provides managed Cilium for free but charges for L7 capabilities. It is possible to swap this with BYO Cilium CNI. For AKS on Azure, the CNI must be configured to 'none' during provisioning of the cluster and post creation, Cilium must be installed and configured. 
 
     **ArgoCD** must be installed on the management cluster and ArgoCD must be configured with access to dev/stg/prod clusters and the appropriate cluster labels set. See [here](argocd.md) for more details.
 
 ## Agnostics Layer
 
 This layer provides the necessary abstractions and common components that will allow the application layer to operate regardless of where K8TRE is deployed.
-These include storage classes, cert-manager, External Secrets Operator and more. See [agnostics documentation](agnostics.md) for more information. 
+These include components that provide core K8TRE capabilities:
+- Encryption
+    - certs-manager
+    - KMSv2
+- Identity & Authorisation Management
+    - Keycloak
+- DNS
+    - external-dns
+- Secrets Management
+    - External secrets operator
+- Ingress Management
+    - Cilium Gateway
+- Storage
+    - CSI Provisioners
+    - cnpg
+
+See [agnostics documentation](agnostics.md) for more information. 
 
 ## Application Layer
 
