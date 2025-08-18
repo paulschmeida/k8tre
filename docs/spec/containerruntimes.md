@@ -8,22 +8,24 @@ k8tre_statements:
 
 {{ spec_content(page.meta) }}
 
-**Questions**: 
-
-1. **What container runtimes should a K8TRE implementation use, and why?**
-
-    A K8TRE implementation may use the default CRI- and OCI-compliant container runtimes of their chosen Kubernetes distribution, or where a TRE operator's risk appetite is low enough that the container breakout risk using these runtimes is unacceptable, more secure OCI-compliant runtimes may be used e.g. Kata Containers, gVisor.
-
-2. **What statements about container runtimes must the K8TRE Specification make, pertaining to the capabilities that must be implemented by the underlying K8S platform?**
-
-    A K8TRE implementation's underlying Kubernetes platform needs to provide suitable project isolation for the TRE operator's risk appetite. The K8TRE Specification therefore needs to allow TRE operators to choose runtimes with increased security (allowing increased confidence in project isolation) should their preferences require it. However, the Specification must allow less risk averse operators to use the default CRI and OCI-compliant runtimes for EKS, AKS, and K3S.
-
 ## Implementation Compliance
 
-K8TRE Reference Implementation: uses the default high- and low-level container runtimes in the EKS, AKS, K3S Kubernetes distributions. 
+### K8TRE Reference Implementation
 
-UCL ARC TRE: uses the default high- and low-level container runtimes in EKS.
+uses the default high- and low-level container runtimes in the EKS, AKS, K3S Kubernetes distributions. 
 
-FRIDGE:
+### UCL ARC TRE
 
-Director: 
+uses the default high- and low-level container runtimes in EKS.
+
+### FRIDGE
+
+## FAQ
+
+- **What container runtimes should a K8TRE implementation use, and why?**
+
+   A K8TRE implementation may use the default CRI- and OCI-compliant container runtimes of their chosen Kubernetes distribution, or where a TRE operator's risk appetite is low enough that the container breakout risk using these runtimes is unacceptable, more secure OCI-compliant runtimes may be used e.g. Kata Containers, gVisor.
+
+- **What statements about container runtimes must the K8TRE Specification make, pertaining to the capabilities that must be implemented by the underlying K8S platform?**
+
+   A K8TRE implementation's underlying Kubernetes platform needs to provide suitable project isolation for the TRE operator's risk appetite. The K8TRE Specification therefore needs to allow TRE operators to choose runtimes with increased security (allowing increased confidence in project isolation) should their preferences require it. However, the Specification must allow less risk averse operators to use the default CRI and OCI-compliant runtimes for EKS, AKS, and K3S.
