@@ -14,9 +14,9 @@ k8tre_statements:
 
 Services within K8TRE are discoverable as normal through CoreDNS with the usual format of `<service-name>.<namespace>.svc.cluster.local`. Applications are allowed to automatically create, update and delete DNS entries required to expose their services by using ExternalDNS running in the clusters.
 
-### UCL ARC TRE
+### TREu
 
-DNS records are not created by applications running on the cluster, rather by the administrators who manage the DNS records together with the lifecycle operations of the corresponding services.
+In a TREu deployment, DNS records are not created by applications running on the cluster, rather by the administrators who manage the DNS records together with the lifecycle operations of the corresponding services.
 
 ### FRIDGE
 

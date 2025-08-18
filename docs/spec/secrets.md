@@ -14,7 +14,7 @@ k8tre_statements:
 
 KMS provider and plugin the preferred solution for MVP.
 
-### UCL ARC TRE
+### TREu
 
 ### FRIDGE
 

@@ -12,11 +12,11 @@ k8tre_statements:
 
 ### K8TRE Reference Implementation
 
-Includes the CNPG operator and a default Postgres database. Applications can deploy their own Postgres databases in a consistent manner using the operator.
+The K8TRE Reference Implementation includes the CNPG operator and a default Postgres database. Applications can deploy their own Postgres databases in a consistent manner using the operator.
 
-### UCL ARC TRE
+### TREu
 
-uses the CNPG operator to provision Postgres databases for use by applications on the cluster.
+TREu uses Postgres databases for use in its System cluster, specifically, for Apache Guacamole VDI and for API authorisation state, provisioned using the CNPG operator. TREu does not support databases containing project sensitive data on its System cluster: Projects are expected to deploy their own databases on Project VMs if required.
 
 ### FRIDGE
 

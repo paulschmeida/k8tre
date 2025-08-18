@@ -12,11 +12,11 @@ k8tre_statements:
 
 ### K8TRE Reference Implementation
 
-currently implements an NGINX Ingress Controller 
+he K8TRE Reference Implementation currently implements an NGINX Ingress Controller.
 
-### UCL ARC TRE
+### TREu
 
-implements an NGINX Ingress Controller exposed to a AWS Network Load Balancer. Cloudflare is the only public origin allowed, ensuring no requests go to the NLB directly.
+TREu implements an NGINX Ingress Controller exposed to a AWS Network Load Balancer. A single public origin (Cloudflare in the ARC deployment) must be configured - no requests go to the NLB directly.
 
 ### FRIDGE
 

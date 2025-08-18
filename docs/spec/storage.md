@@ -8,15 +8,21 @@ k8tre_statements:
 
 {{ spec_content(page.meta) }}
 
+## Motivation
+
+The development of K8TRE-compliant components (e.g. apps) will be facilitated by the availability of storage in the deployment whose quality-of-service, backup policies and access modes (for example) are encoded in terms of standard Kubernetes abstractions. This will allow deployers to  match up and verify component requirements against available storage.
+
 ## Implementation Compliance
 
 ### K8TRE Reference Implementation
 
 Use [Longhorn](https://longhorn.io/docs/1.9.0/deploy/install/install-with-kubectl/) for block distributed storage to align with FRIDGE and UCL Condenser (?).
 
-### UCL ARC TRE
+### TREu
 
 ### FRIDGE
+
+FRIDGE uses Longhorn for wide compatibility across different platforms. It uses NFS to do ReadWriteMany storage classes.
 
 ## FAQ
 

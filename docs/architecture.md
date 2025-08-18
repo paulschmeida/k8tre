@@ -6,6 +6,8 @@
 
 ### BYO Software
 
+The K8TRE Reference Implementation will be agnostic to whether a deployment supports "bring-your-own software and code" versus curated software and will be offered with both options available via deployment configuration.
+
 ### Container Runtimes
 
 The K8TRE Reference Implementation uses the default high- and low-level container runtimes in the EKS, AKS, K3S Kubernetes distributions. 

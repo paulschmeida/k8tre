@@ -7,6 +7,10 @@ k8tre_statements:
 ---
 
 {{ spec_content(page.meta) }}
+
+## Motivation
+
+Robust network policy enforcement is required to isolate traffic, especially of sensitive data, but also of orchestration requests/responses that could be an attack vector - e.g. in runtime modification of access control lists.
     
 ## Implementation Compliance
 
@@ -14,9 +18,9 @@ k8tre_statements:
 
 K8TRE uses Cilium as the default Container Network Interface (CNI) to provide advanced network security through network policies. Cilium is installed before ArgoCD during cluster setup and includes Hubble for network observability.
 
-### UCL ARC TRE
+### TREu
 
-the (Kubernetes-based) system plane uses the Cilium CNI and network policies to control east-west traffic within the EKS cluster, allowing access to only the services/CIDRs that are required.
+The (Kubernetes-based) System plane uses the Cilium CNI and network policies to control east-west traffic within the EKS cluster, allowing access to only the services/CIDRs that are required. Project network isolation is enacted at the compute platform level, e.g. using security groups in AWS.
 
 ### FRIDGE
 
