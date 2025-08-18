@@ -6,6 +6,8 @@ k8tre_statements:
   spec: PVCs from K8TRE components or applications should request from a set of pre-defined storage classes, not simply from the default storage class.  
 ---
 
+{{ spec_content(page.meta) }}
+
 ## Implementation Compliance
 
 ### K8TRE Reference Implementation

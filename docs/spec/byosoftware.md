@@ -3,7 +3,7 @@ topic: BYO Software
 last_updated: 2025-07-07
 discussion: https://github.com/orgs/k8tre/discussions/8
 k8tre_statements:
-  spec: K8TRE supports both "bring-your-own software and code" and curated software models, but it should be up to the TRE administrators to determine what can be run.
+  spec: Both "bring-your-own software and code" and curated software models may be supported.
 ---
 
 {{ spec_content(page.meta) }}

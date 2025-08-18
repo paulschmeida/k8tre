@@ -60,7 +60,7 @@ nav:
           - Databases : spec/database.md
           - DNS : spec/dns.md
           - GitOps : spec/gitops.md
-          - Load Balancers : spec/loadbalancers.md
+          - Ingress : spec/ingress.md
           - Networking : spec/networking.md
           - Secrets : spec/secrets.md
           - Storage : spec/storage.md

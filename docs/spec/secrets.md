@@ -6,6 +6,8 @@ k8tre_statements:
   spec: Storing secrets unencrypted in etcd is not acceptable.
 ---
 
+{{ spec_content(page.meta) }}
+
 ## Implementation Compliance
 
 ### K8TRE Reference Implementation
