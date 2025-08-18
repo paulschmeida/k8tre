@@ -1,6 +1,6 @@
 ---
 topic: DNS
-date: 2025-05-30
+last_updated: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/5
 k8tre_statements:
   spec: A TRE that deploys DNS records to allow external consumers to discover services should manage the external DNS entities together with the lifecycle operations of the corresponding services, such as deployments or upgrades. This includes removing DNS records which are no longer needed.

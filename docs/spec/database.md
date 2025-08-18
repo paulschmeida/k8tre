@@ -1,6 +1,6 @@
 ---
 topic: Databases
-date: 2025-05-30
+last_updated: 2025-05-30
 discussion: https://github.com/orgs/k8tre/discussions/9
 k8tre_statements:
   spec: Databases should be treated as attached resources and may be deployed on the cluster, or apps may connect to off-cluster databases.

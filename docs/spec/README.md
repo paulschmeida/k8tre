@@ -4,7 +4,7 @@ Each page in this folder contains a K8TRE Specification statement pertaining to 
 
 There a few important clarifications regarding the interpretation of these Specification statements:
 
-1. **Scope** - The K8TRE Specification applies to Kubernetes-based TRE **codebases**. It is written for an audience of K8TRE codebase developers and defines what a K8TRE-compatible codebase must provide. This includes the K8TRE Reference Implementation as well as other codebases such as the UCL ARC TRE and the FRIDGE TRE.
+1. **Scope** - The K8TRE Specification applies to Kubernetes-based TRE **codebases**. It is written for an audience of K8TRE codebase developers and defines what a K8TRE-compliant codebase must provide. This includes the K8TRE Reference Implementation as well as other codebases such as the UCL ARC TRE and the FRIDGE TRE.
 
 2. **Technology Neutrality** - Beyond its explicit reliance on Kubernetes, the specification is technology-agnostic. However, it may prescribe in detail the capabilities that must be provided by a codebase.
 
@@ -13,5 +13,5 @@ There a few important clarifications regarding the interpretation of these Speci
 ## Design Principles
 
 1. The K8TRE Specification will define the capabilities that must be provided by the underlying Kubernetes platform.
-2. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Speicifcation should leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
-3. Widespread compliance with the K8TRE Specification should result in different TRE developers in the TRE community being able to deploy each other's components in their own TRE's with minimal changes to code, only changes to configuration. In other words, increased portability of open-source TRE components and applications.
+2. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Specification should leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
+3. Widespread compliance with the K8TRE Specification should result in different TRE developers in the TRE community being able to deploy each other's components in their own TREs with minimal changes to code, only changes to configuration. In other words, increased portability of open-source TRE components and applications.

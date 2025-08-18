@@ -1,6 +1,6 @@
 ---
 topic: Secrets
-date: 2025-05-30
+last_updated: 2025-05-30
 discussion: (https://github.com/orgs/k8tre/discussions/6)
 k8tre_statements:
   spec: Storing secrets unencrypted in etcd is not acceptable. 
