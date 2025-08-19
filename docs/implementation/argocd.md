@@ -9,7 +9,7 @@ The reference implementation uses the ArgoCD [_App of Apps_](https://argo-cd.rea
 graph LR
 
     subgraph F[Git Repository]
-        E1[Application Manifests\nHelm Charts, Kustomize\nEnvironment specific patches]
+        E1[Application Manifests<br>Helm Charts, Kustomize<br>Environment specific patches]
     end
     subgraph Management Cluster
         A[ArgoCD]
@@ -99,10 +99,10 @@ The Git Directory generator uses the directory structure to determine the correc
 ```mermaid
 graph LR
 
-A[GitGenerator \n path: apps/keycloak/envs/* \n\n ClusterGenerator \n matchLabels: \n environment: \n index .path.segments 3 ]
-B[ArgoCD Application \n\n apps/keycloak/envs/dev]
-C[ArgoCD Application \n\n apps/keycloak/envs/stg]
-D[ArgoCD Application \n\n apps/keycloak/envs/prod]
+A[GitGenerator <br> path: apps/keycloak/envs/* <br><br> ClusterGenerator <br> matchLabels: <br> environment: <br> index .path.segments 3 ]
+B[ArgoCD Application <br><br> apps/keycloak/envs/dev]
+C[ArgoCD Application <br><br> apps/keycloak/envs/stg]
+D[ArgoCD Application <br><br> apps/keycloak/envs/prod]
 
 dev[Dev Cluster]
 stg[Staging Cluster]
