@@ -20,6 +20,8 @@ K8TRE uses [Longhorn](https://longhorn.io/) for highly available, Kubernetes-nat
 
 ### TREu
 
+The TREu System plane cluster, which does not have access to sensitive data, uses the default storage class to provision volumes from the underlying compute platform (e.g. EBS in AWS). Project storage isolation is enacted at the compute platform level, e.g. using separate EFS file systems in AWS.
+
 ### FRIDGE
 
 FRIDGE uses Longhorn for compatibility across different HPC platforms. FRIDGE also applies encryption on storage volumes attached to Kubernetes Pods where user jobs are exectuded, ensuring data safety.
