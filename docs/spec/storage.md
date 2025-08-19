@@ -16,13 +16,13 @@ The development of K8TRE-compliant components (e.g. apps) will be facilitated by
 
 ### K8TRE Reference Implementation
 
-Use [Longhorn](https://longhorn.io/docs/1.9.0/deploy/install/install-with-kubectl/) for block distributed storage to align with FRIDGE and UCL Condenser (?).
+K8TRE uses [Longhorn](https://longhorn.io/) for highly available, Kubernetes-native, distributed block storage.
 
 ### TREu
 
 ### FRIDGE
 
-FRIDGE uses Longhorn for wide compatibility across different platforms. It uses NFS to do ReadWriteMany storage classes.
+FRIDGE uses Longhorn for compatibility across different HPC platforms. FRIDGE also applies encryption on storage volumes attached to Kubernetes Pods where user jobs are exectuded, ensuring data safety.
 
 ## FAQ
 
