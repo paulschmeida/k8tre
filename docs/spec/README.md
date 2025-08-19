@@ -7,7 +7,9 @@ Referenced illustrative Kubernetes-based TREs include:
 
 ## Interpretation of Specification Statements
 
-1. **Scope** - The K8TRE Specification applies to Kubernetes-based TRE *codebases*. It is written for an audience of K8TRE codebase developers and defines what a K8TRE-compliant codebase Must, Should or May provide.
+1. **Scope** -
+   1. The K8TRE Specification applies to Kubernetes-based TRE *codebases*. It is written for an audience of K8TRE codebase developers and defines what a K8TRE-compliant codebase Must, Should or May provide.
+   2. The Specification _only_ includes statements related directly or indirectly to the use of Kubernetes as a technology platform; it does not cover other technical and system considerations. It is compatible with, and should be read with, the [SATRE specification](https://satre-specification.readthedocs.io/en/stable/) and/or other relevant accreditations.
 
 2. **Technology Neutrality** - Beyond its explicit reliance on Kubernetes, the specification is technology-agnostic. However, it may prescribe capabilities that must be provided by a codebase.
 

@@ -12,11 +12,11 @@ k8tre_statements:
 
 ### K8TRE Reference Implementation
 
-The K8TRE Reference Implementation will be agnostic to whether a deployment supports "bring-your-own software and code" versus curated software and will be offered with both options available via deployment configuration.
+The K8TRE Reference Implementation will be agnostic to whether a deployment supports "bring-your-own software and code" versus curated software, and will be offered with both options available via deployment configuration. It will include some example open-source applications, but expects deployments to use their own container images.
 
 ### TREu
 
-TREu is designed for a bring-your-own software model, encouraging researchers to create Docker containers outside the TRE with all their software tools in it, then ingress the container image into the TRE through the airlock. Pre-fabricated images are also made available to Projects via configured "global resources" (akin to a package manager).
+TREu is designed for a bring-your-own software model, encouraging researchers to create Docker containers outside the TRE with required software tools, then ingress the container images into the TRE through the airlock. Pre-fabricated images are also made available to Projects via configured "global resources" (akin to a package manager).
 
 ### FRIDGE
 
