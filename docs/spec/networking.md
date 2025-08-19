@@ -24,6 +24,8 @@ The (Kubernetes-based) System plane uses the Cilium CNI and network policies to 
 
 ### FRIDGE
 
+FRIDGE makes extensive use of Cilium and standard Kubernetes network policies to ensure only the required network paths are open between componenents in the cluster. This also applies to ingress and egress traffic. Project isolation is not required in FRIDGE as a FRIDGE instance is currently dedicated to a project.
+
 ## FAQ
 
 - **What capabilities must a CNI must provide the cluster to be K8TRE compliant?**
