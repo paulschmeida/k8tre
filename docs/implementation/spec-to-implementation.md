@@ -5,7 +5,7 @@ This page documents the relationship between the K8TRE specification and the K8T
 _Work in Progress_
 
 
-### BYO Software
+### Bring Your Own (BYO) Software
 
 The K8TRE Reference Implementation will be agnostic to whether a deployment supports "bring-your-own software and code" versus curated software and will be offered with both options available via deployment configuration.
 

@@ -1,6 +1,6 @@
 Each page in the K8TRE Specification contains a specification statement, some background motivation if applicable, illustrative compliance information for a selection of Kubernetes-based TREs, and Q & A. They have been derived from [k8tre GitHub Org Discussions](https://github.com/orgs/k8tre/discussions), as well as discussion within the K8TRE working group.
 
-References illustrative Kubernetes-based TREs include:
+Referenced illustrative Kubernetes-based TREs include:
 - the K8TRE Reference Implementation itself 
 - [TREu](https://www.ucl.ac.uk/advanced-research-computing/sensitive-data-and-trusted-research-environments) – the codebase for the UCL ARC TRE
 - [FRIDGE](https://dareuk.org.uk/how-we-work/ongoing-activities/dare-uk-early-adopters/fridge/)
@@ -15,6 +15,6 @@ References illustrative Kubernetes-based TREs include:
 
 ## Design Principles
 
-1. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Specification should leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
+1. Whilst the Specification encourages Kubernetes best-practice, it will not impose particular implementation choices where many competing options exist. The Specification will leave room for TRE developers to make independent implementation choices based on their own organisational/business requirements, whilst still allowing acceptable choices to comply with the Specification.
 2. Widespread compliance with the K8TRE Specification should result in different TRE developers in the TRE community being able to deploy each other's components in their own TREs with minimal changes to code, only changes to configuration. In other words, increased portability of open-source TRE components and applications.
 3. The K8TRE Specification will specify, where appropriate, capabilities that must be provided by the underlying Kubernetes platform.

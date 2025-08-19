@@ -30,7 +30,7 @@ FRIDGE makes extensive use of Cilium and standard Kubernetes network policies to
 
 - **What capabilities must a CNI must provide the cluster to be K8TRE compliant?**
 
-   Full support for K8S Network Policies? i.e. not AWS VPC CNI or Azure CNI..?
+   A CNI must provide full support for standard [K8S Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Note the default K8s CNI in some public cloud providers _is not compliant_.
 
 - **Should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
 
