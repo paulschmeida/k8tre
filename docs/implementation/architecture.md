@@ -29,10 +29,15 @@ For example, the K8TRE Azure infrastructure reference implementation provisions 
 To support deployment of K8TRE, the development team aim to make available reference IaC implementations of base resources required to support the operation of K8TRE across a variety of cloud and on-premise settings:
 
 #### Azure (AKS)
-The K8TRE-Azure infrastructure reference implementation is an [IaC project](https://github.com/k8tre/k8tre-azure) developed in Terragrunt that provisions key resources within a hub-spoke network and environment landing zone that includes multiple AKS clusters with key customisations (i.e. BYO Cilium CNI), storage accounts, key vaults, etc. Moreover, the projects relies on the use of Azure Verified Modules (AVMs) wherever possible and follows best practice guidelines. It also includes CICD workflows implemented as Github Actions to demonstrate how to deploy the project via a runner hosted within the Azure tenant. 
+The K8TRE-Azure infrastructure reference implementation is an [IaC project](https://github.com/k8tre/k8tre-azure) developed in [Terragrunt](https://terragrunt.gruntwork.io/) that provisions key resources within a hub-spoke network and environment landing zone that includes multiple AKS clusters with key customisations (i.e. BYO Cilium CNI), storage accounts, key vaults, etc. Moreover, the projects relies on the use of Azure Verified Modules (AVMs) wherever possible and follows best practice guidelines. It also includes CICD workflows implemented as Github Actions to demonstrate how to deploy the project via a runner hosted within the Azure tenant. 
+
+### AWS (EKS)
+
+_Todo_
 
 #### On-Premise (K3s)
-???
+
+_Todo_
 
 While these K8TRE infrastructure reference implementations aim to get operators up and running with minimal overhead, host organisations are free to setup their own infrastructre as long as it meets the requirements for K8TRE (and follows security best practices outlined by the SATREv2 specifications).
 
@@ -41,26 +46,28 @@ While these K8TRE infrastructure reference implementations aim to get operators 
 
 This layer provides the necessary abstractions and common components that will allow the application layer to operate regardless of where K8TRE is deployed.
 The agnostics layer includes base components that provide core capabilities defined in the K8TRE specification:
+
 - Encryption
-    - certs-manager
+    - [cert-manager](https://cert-manager.io/)
     - KMSv2
 - Identity & Authorisation Management
-    - Keycloak
+    - [Keycloak](https://www.keycloak.org/)
 - DNS
-    - external-dns
+    - [ExternalDNS](https://kubernetes-sigs.github.io/external-dns/)
 - Secrets Management
-    - External secrets operator
+    - [External Secrets Operator](https://external-secrets.io/)
 - Ingress Management
-    - Cilium Gateway
+    - [Cilium Gateway]]
+    (https://cilium.io/use-cases/gateway-api/)
 - Storage
     - CSI Provisioners
-    - cnpg
+    - [CloudNativePG (PostgreSQL Operator)](https://cilium.io/use-cases/gateway-api/)
 
 See [agnostics documentation](agnostics.md) for more information. 
 
 ## Application Layer
 
-Finally, there is the application layer where the actual microservices that provide user facing functions are deployed. These include identity management (KeyCloak), workspace provisioning (JupyterHub), federation tools and more.
+Finally, there is the application layer where the actual microservices that provide user facing functions are deployed. These include workspace provisioning (JupyterHub), federation tools and more.
 
 
 ## Developer Support & Environment Promotion
