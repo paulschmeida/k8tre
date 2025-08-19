@@ -12,7 +12,7 @@ k8tre_statements:
 
 ### K8TRE Reference Implementation
 
-The K8TRE Reference Implementation includes the CNPG operator and a default Postgres database. Applications can deploy their own Postgres databases in a consistent manner using the operator.
+The K8TRE Reference Implementation includes the CloudNativePG (CNPG) operator for Postgres and a default Postgres database. Applications can deploy their own Postgres databases in a consistent manner using the operator.
 
 ### TREu
 
