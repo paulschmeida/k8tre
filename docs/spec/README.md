@@ -1,6 +1,7 @@
 Each page in the K8TRE Specification contains a specification statement, some background motivation if applicable, illustrative compliance information for a selection of Kubernetes-based TREs, and Q & A. They have been derived from [k8tre GitHub Org Discussions](https://github.com/orgs/k8tre/discussions), as well as discussion within the K8TRE working group.
 
-Referenced illustrative Kubernetes-based TREs include:
+Referenced illustrative Kubernetes-based TREs currently include:
+
 - the K8TRE Reference Implementation itself 
 - [TREu](https://www.ucl.ac.uk/advanced-research-computing/sensitive-data-and-trusted-research-environments) – the codebase for the UCL ARC TRE
 - [FRIDGE](https://dareuk.org.uk/how-we-work/ongoing-activities/dare-uk-early-adopters/fridge/)
