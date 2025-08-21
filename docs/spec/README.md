@@ -2,9 +2,9 @@ Each page in the K8TRE Specification contains a specification statement, some ba
 
 Referenced illustrative Kubernetes-based TREs currently include:
 
-- the K8TRE Reference Implementation itself 
-- [TREu](https://www.ucl.ac.uk/advanced-research-computing/sensitive-data-and-trusted-research-environments) – the codebase for the UCL ARC TRE
-- [FRIDGE](https://dareuk.org.uk/how-we-work/ongoing-activities/dare-uk-early-adopters/fridge/)
+- The K8TRE Reference Implementation itself.
+- [TREu](https://www.ucl.ac.uk/advanced-research-computing/sensitive-data-and-trusted-research-environments) – the codebase for the UCL ARC TRE.
+- [FRIDGE](https://dareuk.org.uk/how-we-work/ongoing-activities/dare-uk-early-adopters/fridge/) – note that FRIDGE is not a ["front-door" TRE](https://www.google.com/search?q=%22front-door%22+trusted+research+environment), but implements a TRE-like enclave on a compute facility.
 
 ## Interpretation of Specification Statements
 
