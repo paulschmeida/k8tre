@@ -4,7 +4,7 @@ K8TRE reference implementation will be deployable to [Azure Kubernetes Service](
 
 This is achieved through a three-layered architecture depicted in the architecture diagram below.
 
-![High-Level K8TRE Architecture](../img/K8TRE-high-level.png)
+![High-Level K8TRE Architecture](../img/K8TRE-layers-v2.jpg)
 
 ## Infrastructure Layer
 
