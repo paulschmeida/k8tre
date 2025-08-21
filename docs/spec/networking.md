@@ -8,12 +8,30 @@ k8tre_statements:
 
 {{ spec_content(page.meta) }}
 
-**Questions**: 
+## Motivation
 
-1. **What capabilities must a CNI must provide the cluster to be K8TRE compliant?**
+Robust network policy enforcement is required to isolate traffic, especially of sensitive data, but also of orchestration requests/responses that could be an attack vector - e.g. in runtime modification of access control lists.
+    
+## Implementation Compliance
 
-    Full support for K8S Network Policies? i.e. not AWS VPC CNI or Azure CNI..?
+### K8TRE Reference Implementation
 
-2. **Should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
+K8TRE uses Cilium as the default Container Network Interface (CNI) to provide advanced network security through network policies. Cilium is installed before ArgoCD during cluster setup and includes Hubble for network observability.
 
-    No. A K8TRE's CIDR/VPC/VNET is solely for in-cluster use only so all external access is via the ingress/gateway.
+### TREu
+
+The (Kubernetes-based) System plane uses the Cilium CNI and network policies to control east-west traffic within the EKS cluster, allowing access to only the services/CIDRs that are required. Project network isolation is enacted at the compute platform level, e.g. using security groups in AWS.
+
+### FRIDGE
+
+FRIDGE makes extensive use of Cilium and standard Kubernetes network policies to ensure only the required network paths are open between componenents in the cluster. This also applies to ingress and egress traffic. Project isolation is not required in FRIDGE as a FRIDGE instance is currently dedicated to a project.
+
+## FAQ
+
+- **What capabilities must a CNI must provide the cluster to be K8TRE compliant?**
+
+   A CNI must provide full support for standard [K8S Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Note the default K8s CNI in some public cloud providers _is not compliant_.
+
+- **Should applications/services outside the cluster also have access to the CIDR/VPC/VNET**
+
+   No. A K8TRE's CIDR/VPC/VNET is solely for in-cluster use only so all external access is via the ingress/gateway.

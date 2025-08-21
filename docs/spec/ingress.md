@@ -8,12 +8,24 @@ k8tre_statements:
 
 {{ spec_content(page.meta) }}
 
-**Questions**: 
+## Implementation Compliance
 
-1.  **Are load balancers mandatory for a K8TRE?**
+### K8TRE Reference Implementation
+
+he K8TRE Reference Implementation currently implements an NGINX Ingress Controller.
+
+### TREu
+
+TREu implements an NGINX Ingress Controller exposed to a AWS Network Load Balancer. A single public origin (Cloudflare in the ARC deployment) must be configured - no requests go to the NLB directly.
+
+### FRIDGE
+
+## FAQ
+
+- **Are load balancers mandatory for a K8TRE?**
 
     No - the use of an external (i.e. off-cluster) load balancer is recommended, but not mandatory unless you're using services of type `LoadBalancer`.
 
-2.  **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
+- **Should one LB per app be discouraged on account of costs i.e. should K8TRE encourage use of ingress controller + services for load balancing?**
 
     If one load balancer can be used to support multiple applications (e.g. AWS ALB), then this is encouraged to reduce potentially high cloud costs.

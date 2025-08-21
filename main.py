@@ -9,7 +9,8 @@ def define_env(env):
         return f"""
 # {topic}
 
-**K8TRE Spec Statement**: {statement}
+!!! abstract "Specification"
+    {statement}
 
 Last updated: {updated}  
 Source: [GitHub Discussion]({source})
