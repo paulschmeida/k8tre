@@ -1,10 +1,10 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: default-pool 
+  name: default-pool
 spec:
   addresses:
-  - 192.168.123.50-192.168.123.100 # This range should be adjusted to your network configuration
+    - 10.168.217.180-10.168.217.186 # This range should be adjusted to your network configuration
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
@@ -12,4 +12,4 @@ metadata:
   name: default-advertisement
 spec:
   ipAddressPools:
-  - default-pool
+    - default-pool

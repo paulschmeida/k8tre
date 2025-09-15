@@ -1,11 +1,21 @@
 controller:
   publishService:
-    enabled: "true" # This is required for external-dns to work
+    enabled: true # boolean; needed for external-dns & ingress status
+
   admissionWebhooks:
     enabled: false
 
-  # Use hostport for ingress so we don't need a LoadBalancer
+  # No hostPort when using a LoadBalancer
   hostPort:
-    enabled: true
+    enabled: false
+
   service:
-    type: ClusterIP
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    # If you want to fix the IP (optional), pick one from 10.168.217.180-186:
+    # loadBalancerIP: 10.168.217.180
+
+  # Optional: common nginx settings (safe defaults)
+  config:
+    use-forwarded-headers: "true"
+    proxy-body-size: "64m"
