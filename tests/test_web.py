@@ -8,7 +8,7 @@ import socket
 import pytest
 
 INGRESS_HOST = os.getenv("INGRESS_HOST", "localhost")
-K8TRE_DOMAIN = os.getenv("K8TRE_DOMAIN", "dev.k8tre.internal")
+K8TRE_DOMAIN = os.getenv("K8TRE_DOMAIN", "k3s.rds.uhs.nhs.uk")
 
 
 def test_web_ingress_keycloak():

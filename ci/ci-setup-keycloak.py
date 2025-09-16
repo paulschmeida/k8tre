@@ -8,11 +8,11 @@ import sys
 
 parser = ArgumentParser()
 parser.add_argument(
-    "--keycloak-url", default="https://keycloak.dev.k8tre.internal", help="Keycloak URL"
+    "--keycloak-url", default="https://keycloak.k3s.rds.uhs.nhs.uk", help="Keycloak URL"
 )
 parser.add_argument(
     "--jupyterhub-url",
-    default="https://jupyter.dev.k8tre.internal",
+    default="https://jupyter.k3s.rds.uhs.nhs.uk",
     help="JupyterHub URL",
 )
 parser.add_argument("--keycloak-admin", default="admin", help="Keycloak admin user")

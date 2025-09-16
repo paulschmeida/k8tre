@@ -309,7 +309,7 @@ Add the following entries to `/etc/hosts` on your host machine:
 sudo bash -c 'cat << EOF >> /etc/hosts
 # VMs running K3s
 192.168.123.52 mgmt.k8tre.internal
-192.168.123.62 dev.k8tre.internal
+192.168.123.62 k3s.rds.uhs.nhs.uk
 EOF'
 ```
 

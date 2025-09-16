@@ -1,6 +1,6 @@
 - op: replace
   path: /spec/commonName
-  value: dev.k8tre.internal
+  value: k3s.rds.uhs.nhs.uk
 - op: replace
   path: /spec/dnsNames/0
-  value: dev.k8tre.internal
+  value: k3s.rds.uhs.nhs.uk

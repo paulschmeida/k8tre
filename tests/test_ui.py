@@ -4,7 +4,7 @@ import pytest
 from PIL import Image, ImageChops
 from playwright.sync_api import Page  # , expect
 
-K8TRE_DOMAIN = os.getenv("K8TRE_DOMAIN", "dev.k8tre.internal")
+K8TRE_DOMAIN = os.getenv("K8TRE_DOMAIN", "k3s.rds.uhs.nhs.uk")
 
 HERE = Path(__file__).absolute().parent
 

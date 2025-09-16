@@ -22,10 +22,9 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
   hosts:
-    - host: guacamole.dev.k8tre.internal
+    - host: guacamole.k3s.rds.uhs.nhs.uk
       pathType: ImplementationSpecific
   tls:
     - hosts:
-        - guacamole.dev.k8tre.internal
+        - guacamole.k3s.rds.uhs.nhs.uk
       secretName: guacamole-k8tre-tls
-

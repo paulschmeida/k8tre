@@ -10,15 +10,15 @@ externalDatabase:
 ingress:
   enabled: true
   ingressClassName: nginx
-  hostname: keycloak.dev.k8tre.internal
+  hostname: keycloak.k3s.rds.uhs.nhs.uk
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: keycloak.dev.k8tre.internal
+    external-dns.alpha.kubernetes.io/hostname: keycloak.k3s.rds.uhs.nhs.uk
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   tls: true
   extraTls:
     - secretName: keycloak-k8tre-tls
       hosts:
-        - keycloak.dev.k8tre.internal
+        - keycloak.k3s.rds.uhs.nhs.uk
 auth:
   adminUser: admin
   existingSecret: keycloak-admin-secret

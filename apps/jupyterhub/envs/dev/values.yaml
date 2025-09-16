@@ -16,8 +16,8 @@ hub:
       client_id: jupyterhub
       client_secret: jupyterhub-client-secret
       # Accessed externally by the user
-      oauth_callback_url: https://jupyter.dev.k8tre.internal/hub/oauth_callback
-      authorize_url: https://keycloak.dev.k8tre.internal/realms/master/protocol/openid-connect/auth
+      oauth_callback_url: https://jupyter.k3s.rds.uhs.nhs.uk/hub/oauth_callback
+      authorize_url: https://keycloak.k3s.rds.uhs.nhs.uk/realms/master/protocol/openid-connect/auth
       # Internal to the cluster: svc=keycloak ns=keycloak
       token_url: http://keycloak.keycloak/realms/master/protocol/openid-connect/token
       userdata_url: http://keycloak.keycloak/realms/master/protocol/openid-connect/userinfo
@@ -93,9 +93,6 @@ hub:
       services:
         - guacamole
 
-
-
-
 proxy:
   service:
     type: ClusterIP
@@ -121,7 +118,7 @@ singleuser:
   # Use default entrypoint
   cmd:
   extraEnv:
-    STATIC_REDIRECTOR_DESTINATION: https://jupyter.dev.k8tre.internal/services/guacamole/
+    STATIC_REDIRECTOR_DESTINATION: https://jupyter.k3s.rds.uhs.nhs.uk/services/guacamole/
     STATIC_REDIRECTOR_AUTOREDIRECT: "true"
   extraContainers:
     - name: ubuntu-mate
@@ -143,48 +140,48 @@ singleuser:
   # Use the default UID from the image
   uid:
   # networkPolicy:
-    # Uncomment the following to use internal coredns-restricted
-    # egressAllowRules:
-    #   dnsPortsCloudMetadataServer: false
-    #   dnsPortsKubeSystemNamespace: false
-    #   dnsPortsPrivateIPs: false
-    #   nonPrivateIPs: false
-    #   privateIPs: false
-    # egress:
-    #   - to:
-    #       - podSelector:
-    #           matchLabels:
-    #             user-pod-dns: "true"
-    #             app.kubernetes.io/instance: coredns-restricted
-    #             app.kubernetes.io/name: coredns
-    #     ports:
-    #       - protocol: UDP
-    #         port: 53
+  # Uncomment the following to use internal coredns-restricted
+  # egressAllowRules:
+  #   dnsPortsCloudMetadataServer: false
+  #   dnsPortsKubeSystemNamespace: false
+  #   dnsPortsPrivateIPs: false
+  #   nonPrivateIPs: false
+  #   privateIPs: false
+  # egress:
+  #   - to:
+  #       - podSelector:
+  #           matchLabels:
+  #             user-pod-dns: "true"
+  #             app.kubernetes.io/instance: coredns-restricted
+  #             app.kubernetes.io/name: coredns
+  #     ports:
+  #       - protocol: UDP
+  #         port: 53
 
-    # Allow ingress from guacd
-    # ingress:
-    #   - from:
-    #       - podSelector:
-    #           matchLabels:
-    #             app.kubernetes.io/component: guacd
-    #             app.kubernetes.io/name: guacamole
-    #   - ports:
-    #       - port: 3389
-    #         protocol: TCP
-    #       - port: 5901
-    #         protocol: TCP
+  # Allow ingress from guacd
+  # ingress:
+  #   - from:
+  #       - podSelector:
+  #           matchLabels:
+  #             app.kubernetes.io/component: guacd
+  #             app.kubernetes.io/name: guacamole
+  #   - ports:
+  #       - port: 3389
+  #         protocol: TCP
+  #       - port: 5901
+  #         protocol: TCP
 
 ingress:
   enabled: true
   hosts:
-    - jupyter.dev.k8tre.internal
+    - jupyter.k3s.rds.uhs.nhs.uk
   ingressClassName: nginx
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: jupyter.dev.k8tre.internal
+    external-dns.alpha.kubernetes.io/hostname: jupyter.k3s.rds.uhs.nhs.uk
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   tls:
     - hosts:
-        - jupyter.dev.k8tre.internal
+        - jupyter.k3s.rds.uhs.nhs.uk
       secretName: jupyter-k8tre-tls
 
 debug:
